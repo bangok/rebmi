@@ -1,6 +1,7 @@
 package com.maamcare.rebmi.service.impl;
 
 import com.maamcare.rebmi.dao.UserMapper;
+import com.maamcare.rebmi.dto.MyDto;
 import com.maamcare.rebmi.po.User;
 import com.maamcare.rebmi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,12 @@ public class UserServiceImpl implements UserService {
     UserMapper userMapper;
 
     @Override
-    public User getUserInfoByUserid(Integer userid) {
-        return userMapper.getUserInfoByUserid(userid);
+    public MyDto getUserInfoByUserid(Integer userid) {
+        User user = userMapper.getUserInfoByUserid(userid);
+        return MyDto.builder()
+                .code(0)
+                .msg("")
+                .data(user)
+                .build();
     }
 }

@@ -66,7 +66,7 @@ public class UserConroller {
 
     @GetMapping("/getUserInfoByUserid")
     public Result getUserInfoByUserid(@RequestParam Integer userid){
-        User user = userService.getUserInfoByUserid(userid);
+        User user = (User)userService.getUserInfoByUserid(userid).getData();
         Map<String,String> res= new HashMap<>();
         res.put("username",user.getUsername());
         res.put("password",user.getPassword());

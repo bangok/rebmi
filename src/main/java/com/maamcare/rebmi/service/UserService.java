@@ -1,7 +1,7 @@
 package com.maamcare.rebmi.service;
 
-import com.maamcare.rebmi.po.User;
+import com.maamcare.rebmi.dto.MyDto;
 
 public interface UserService {
-    public User getUserInfoByUserid(Integer userid);
+    public MyDto getUserInfoByUserid(Integer userid);
 }
