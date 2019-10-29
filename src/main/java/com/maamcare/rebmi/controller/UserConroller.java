@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.Map;
 
 
 @RestController
@@ -18,11 +20,40 @@ public class UserConroller {
     @Autowired
     UserService userService;
 
+    @GetMapping("/noLogin")
+    public Result noLogin(HttpSession session){
+        return Result.builder()
+                .status(0)
+                .err(new ErrMap(-1,"用户未登录"))
+                .data(null)
+                .build();
+    }
+
     @PostMapping("/register")
     public Result register(@RequestParam String username,
                            @RequestParam String password,
                            @RequestParam Integer height,
                            HttpSession session){
+        //TODO
+        Map<String,Integer> res= new HashMap<>();
+        res.put("userid",1);
+
+        return Result.builder()
+                .status(1)
+                .err(new ErrMap(0,""))
+                .data(res)
+                .build();
+
+    }
+
+    @PostMapping("/login")
+    public Result login(@RequestParam String username,
+                           @RequestParam String password,
+                           HttpSession session){
+        //TODO
+        Map<String,Integer> res= new HashMap<>();
+        res.put("userid",1);
+
         return Result.builder()
                 .status(1)
                 .err(new ErrMap(0,""))
@@ -31,15 +62,27 @@ public class UserConroller {
 
     }
 
-    @GetMapping("/getUserInfoById")
-    public Result getUserInfoById(){
-        User user = userService.getUserInfoByUserid(1);
-        return Result.builder().status(1).err(new ErrMap(0,"")).data(user).build();
-    }
 
     @GetMapping("/getUserInfoByUserid")
-    public Result getUserInfoByUserid(){
-        User user = userService.getUserInfoByUserid(1);
-        return Result.builder().status(1).err(new ErrMap(0,"")).data(user).build();
+    public Result getUserInfoByUserid(@RequestParam Integer userid){
+        User user = userService.getUserInfoByUserid(userid);
+        Map<String,String> res= new HashMap<>();
+        res.put("username",user.getUsername());
+        res.put("password",user.getPassword());
+        return Result.builder()
+                .status(1)
+                .err(new ErrMap(0,""))
+                .data(res)
+                .build();
+    }
+
+    @GetMapping("/updateHeight")
+    public Result updateHeight(@RequestParam Integer userid,@RequestParam Integer hieght){
+
+        return Result.builder()
+                .status(1)
+                .err(new ErrMap(0,""))
+                .data(null)
+                .build();
     }
 }
