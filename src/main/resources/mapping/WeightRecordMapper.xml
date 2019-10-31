@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.maamcare.rebmi.dao.UserMapper">
+
+    <resultMap id="BaseResultMap" type="com.maamcare.rebmi.po.WeightRecord">
+        <result column="id" jdbcType="INTEGER" property="id" />
+        <result column="weight" jdbcType="INTEGER" property="weight" />
+        <result column="userid" jdbcType="INTEGER" property="userId" />
+        <result column="record_date" jdbcType="Date" property="record_date" />
+    </resultMap>
+
+    <select id="GetWeightListByTimeSoltAndUserId" resultMap="BaseResultMap">
+        select * from record where record_date  &gt;= #{startDate}and record_date &lt;= #{endDate}
+        and userid = #{userId}
+    </select>
+   <select id="getWeightByUserIdAndDate" resultMap="BaseResultMap">
+       select * from record where userid = #{userId} and record_date = #{anyDate}
+   </select>
+
+</mapper>

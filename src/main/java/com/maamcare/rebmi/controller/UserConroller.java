@@ -68,17 +68,17 @@ public class UserConroller {
     public Result getUserInfoByUserId(@RequestParam Integer userId){
         ErrMap err = new ErrMap(0,"");
         User user;
-        try {
+//        try {
             user = userService.getUserInfoByUserid(userId);
-        } catch (MyException e) {
-            err.setCode(e.getCode());
-            err.setMsg(e.getMsg());
-            return Result.builder()
-                    .status(0)
-                    .err(err)
-                    .data(null)
-                    .build();
-        }
+//        } catch (MyException e) {
+//            err.setCode(e.getCode());
+//            err.setMsg(e.getMsg());
+//            return Result.builder()
+//                    .status(0)
+//                    .err(err)
+//                    .data(null)
+//                    .build();
+//        }
         Map<String,String> res= new HashMap<>();
         res.put("username",user.getUsername());
         res.put("password",user.getPassword());
