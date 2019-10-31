@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class MyException extends Exception{
+public class MyException extends RuntimeException{
     public Integer code;
     public String msg;
 }

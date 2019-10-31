@@ -7,6 +7,7 @@ import com.maamcare.rebmi.service.UserService;
 import com.maamcare.rebmi.vo.ErrMap;
 import com.maamcare.rebmi.vo.Result;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
@@ -65,20 +66,25 @@ public class UserConroller {
 
 
     @GetMapping("/getUserInfoByUserId")
-    public Result getUserInfoByUserId(@RequestParam Integer userId){
+    @Transactional(rollbackFor = Exception.class)
+    public Result getUserInfoByUserId(@RequestParam Integer userId) {
         ErrMap err = new ErrMap(0,"");
+
         User user;
-        try {
-            user = userService.getUserInfoByUserid(userId);
-        } catch (MyException e) {
-            err.setCode(e.getCode());
-            err.setMsg(e.getMsg());
-            return Result.builder()
-                    .status(0)
-                    .err(err)
-                    .data(null)
-                    .build();
-        }
+        user = userService.getUserInfoByUserid(userId);
+
+
+//        try {
+//            user = userService.getUserInfoByUserid(userId);
+//        } catch (MyException e) {
+//            err.setCode(e.getCode());
+//            err.setMsg(e.getMsg());
+//            return Result.builder()
+//                    .status(0)
+//                    .err(err)
+//                    .data(null)
+//                    .build();
+//        }
         Map<String,String> res= new HashMap<>();
         res.put("username",user.getUsername());
         res.put("password",user.getPassword());

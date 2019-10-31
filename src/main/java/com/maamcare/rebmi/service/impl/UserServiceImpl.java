@@ -1,7 +1,6 @@
 package com.maamcare.rebmi.service.impl;
 
 import com.maamcare.rebmi.dao.UserMapper;
-import com.maamcare.rebmi.dto.MyDto;
 import com.maamcare.rebmi.exception.MyException;
 import com.maamcare.rebmi.po.User;
 import com.maamcare.rebmi.service.UserService;
@@ -16,31 +15,32 @@ public class UserServiceImpl implements UserService {
     UserMapper userMapper;
 
     @Override
-    public User getUserInfoByUserid(Integer userid) throws MyException{
+    public User getUserInfoByUserid(Integer userid) {
         User user = userMapper.getUserInfoByUserid(userid);
         if(user==null){
             throw new MyException(-3,"用户不存在");
         }
+        System.out.println("996996996");
         return user;
     }
 
     @Override
-    public MyDto register(User user) {
+    public Integer register(User user) throws MyException{
         return null;
     }
 
     @Override
-    public MyDto login(String username, String password) {
+    public Integer login (String username, String password)throws MyException {
         return null;
     }
 
     @Override
-    public MyDto getUserInfoByUserId(Integer userId) {
+    public User getUserInfoByUserId(Integer userId) throws MyException {
         return null;
     }
 
     @Override
-    public MyDto updateHeight(Integer userId, Integer height) {
-        return null;
+    public boolean updateHeight(Integer userId, Integer height) throws MyException {
+        return false;
     }
 }
