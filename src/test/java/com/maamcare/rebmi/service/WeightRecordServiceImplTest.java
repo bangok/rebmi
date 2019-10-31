@@ -26,17 +26,19 @@ public class WeightRecordServiceImplTest {
         Integer userId = 1;
         String startDate = "2019-10-13";
         String endDate = "2019-10-20";
-       List<WeightRecord> list = weightRecordService.GetWeightListByTimeSoltAndUserId(userId, startDate, endDate);
+        List<WeightRecord> list = weightRecordService.GetWeightListByTimeSoltAndUserId(userId, startDate, endDate);
         Assertions.assertThat(list).isNotNull();
     }
 
     @Test
     public void TestGetWeightListByTimeSoltAndUserIdWithUserNothingnessExpectError() {
-        Integer userId = 99;
-        String anyDate = "2019-10-13";
-        User user;
+        Integer userId = 1;
+        String startDate = "2019-10-13";
+        String endDate = "2019-10-20";
         try {
-            user = userService.getUserInfoByUserid(userId);
+            List<WeightRecord> list = weightRecordService.GetWeightListByTimeSoltAndUserId(userId, startDate, endDate);
+
+            Assertions.fail("error");
         }catch (MyException e){
             Assertions.assertThat(e.getCode()).isEqualTo(-8);
         }
@@ -51,6 +53,7 @@ public class WeightRecordServiceImplTest {
         List<WeightRecord> list;
         try {
             list =  weightRecordService.GetWeightListByTimeSoltAndUserId(userId, startDate, endDate);
+            Assertions.fail("error");
         }catch (MyException e){
             Assertions.assertThat(e.getCode()).isEqualTo(-10);
         }
@@ -65,17 +68,20 @@ public class WeightRecordServiceImplTest {
         String addDate = "2019-10-20";
         WeightRecord weightRecord;
         weightRecord =  weightRecordService.addWeightRecord(userId, weight, addDate);
+        Assertions.assertThat(weightRecord).isNotNull();
         Assertions.assertThat(weightRecord.userId).isEqualTo(1);
 
     }
 
     @Test
     public void TestAddWeightRecordWithUserNothingnessExpectError() {
-        Integer userId = 99;
-        String anyDate = "2019-10-13";
-        User user;
+        Integer userId = 1;
+        Integer weight = 600;
+        String addDate = "2019-10-20";
+        WeightRecord weightRecord;
         try {
-            user =  userService.getUserInfoByUserid(userId);
+            weightRecord =  weightRecordService.addWeightRecord(userId, weight, addDate);
+            Assertions.fail("error");
         }catch (MyException e){
             Assertions.assertThat(e.getCode()).isEqualTo(-4);
         }
@@ -90,6 +96,7 @@ public class WeightRecordServiceImplTest {
         WeightRecord weightRecord;
         try {
             weightRecord =  weightRecordService.addWeightRecord(userId, weight, addDate);
+            Assertions.fail("error");
         }catch (MyException e){
             Assertions.assertThat(e.getCode()).isEqualTo(-7);
         }
@@ -102,6 +109,7 @@ public class WeightRecordServiceImplTest {
         Integer recordId = 1;
         Integer weight = 600;
         WeightRecord weightRecord = weightRecordService.updateWeightRecord(recordId, weight);
+        Assertions.assertThat(weightRecord).isNotNull();
         Assertions.assertThat(weightRecord.getWeight()).isEqualTo(600);
     }
 
@@ -112,6 +120,7 @@ public class WeightRecordServiceImplTest {
         WeightRecord weightRecord;
         try {
             weightRecord= weightRecordService.updateWeightRecord(recordId, weight);
+            Assertions.fail("error");
         }catch (MyException e){
             Assertions.assertThat(e.getCode()).isEqualTo(-3);
         }
@@ -124,6 +133,7 @@ public class WeightRecordServiceImplTest {
         WeightRecord weightRecord;
         try {
             weightRecord= weightRecordService.updateWeightRecord(recordId, weight);
+            Assertions.fail("error");
         }catch (MyException e){
           Assertions.assertThat(e.getCode()).isEqualTo(-6);
 
