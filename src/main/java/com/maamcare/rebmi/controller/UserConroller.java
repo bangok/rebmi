@@ -1,6 +1,7 @@
 package com.maamcare.rebmi.controller;
 
 
+import com.maamcare.rebmi.exception.MyException;
 import com.maamcare.rebmi.po.User;
 import com.maamcare.rebmi.service.UserService;
 import com.maamcare.rebmi.vo.ErrMap;
@@ -37,7 +38,7 @@ public class UserConroller {
 
         //TODO
         Map<String,Integer> res= new HashMap<>();
-        res.put("userid",1);
+        res.put("userId",1);
 
         return Result.builder()
                 .status(1)
@@ -49,8 +50,8 @@ public class UserConroller {
 
     @PostMapping("/login")
     public Result login(@RequestParam String username,
-                           @RequestParam String password,
-                           HttpSession session){
+                           @RequestParam String password
+                           ){//HttpSession session
         //TODO
         Map<String,Integer> res= new HashMap<>();
         res.put("userid",1);
@@ -64,21 +65,33 @@ public class UserConroller {
     }
 
 
-    @GetMapping("/getUserInfoByUserid")
-    public Result getUserInfoByUserid(@RequestParam Integer userid){
-        User user = (User)userService.getUserInfoByUserid(userid).getData();
+    @GetMapping("/getUserInfoByUserId")
+    public Result getUserInfoByUserId(@RequestParam Integer userId){
+        ErrMap err = new ErrMap(0,"");
+        User user;
+        try {
+            user = userService.getUserInfoByUserid(userId);
+        } catch (MyException e) {
+            err.setCode(e.getCode());
+            err.setMsg(e.getMsg());
+            return Result.builder()
+                    .status(0)
+                    .err(err)
+                    .data(null)
+                    .build();
+        }
         Map<String,String> res= new HashMap<>();
         res.put("username",user.getUsername());
         res.put("password",user.getPassword());
         return Result.builder()
                 .status(1)
-                .err(new ErrMap(0,""))
+                .err(err)
                 .data(res)
                 .build();
     }
 
     @GetMapping("/updateHeight")
-    public Result updateHeight(@RequestParam Integer userid,@RequestParam Integer hieght){
+    public Result updateHeight(@RequestParam Integer userId,@RequestParam Integer hieght){
 
         return Result.builder()
                 .status(1)

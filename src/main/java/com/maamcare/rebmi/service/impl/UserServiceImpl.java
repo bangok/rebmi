@@ -2,6 +2,7 @@ package com.maamcare.rebmi.service.impl;
 
 import com.maamcare.rebmi.dao.UserMapper;
 import com.maamcare.rebmi.dto.MyDto;
+import com.maamcare.rebmi.exception.MyException;
 import com.maamcare.rebmi.po.User;
 import com.maamcare.rebmi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,12 +16,31 @@ public class UserServiceImpl implements UserService {
     UserMapper userMapper;
 
     @Override
-    public MyDto getUserInfoByUserid(Integer userid) {
+    public User getUserInfoByUserid(Integer userid) throws MyException{
         User user = userMapper.getUserInfoByUserid(userid);
-        return MyDto.builder()
-                .code(0)
-                .msg("")
-                .data(user)
-                .build();
+        if(user==null){
+            throw new MyException(-3,"用户不存在");
+        }
+        return user;
+    }
+
+    @Override
+    public MyDto register(User user) {
+        return null;
+    }
+
+    @Override
+    public MyDto login(String username, String password) {
+        return null;
+    }
+
+    @Override
+    public MyDto getUserInfoByUserId(Integer userId) {
+        return null;
+    }
+
+    @Override
+    public MyDto updateHeight(Integer userId, Integer height) {
+        return null;
     }
 }

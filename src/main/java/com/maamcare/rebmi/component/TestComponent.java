@@ -22,7 +22,7 @@ public class TestComponent {
      * 密码：6位，英文、数字组合
      * 身高：正整数
      * */
-    public HashMap<String,String> testRegister(String username,String password,Integer height){
+    public HashMap<String,String> checkRegister(String username,String password,Integer height){
         HashMap<String,String> map = new HashMap<>();
 
         Pattern pattern = Pattern.compile(regForTestUsername);
