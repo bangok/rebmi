@@ -44,12 +44,12 @@ public class WeightRecordControllerTest {
     @Test
     public void TestGetWeightListByTimeSoltAndUserIdWithUserIdEmptyExpectError() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/weightRecord/GetWeightListByTimeSoltAndUserId") //请求的url,请求的方法是get
-                .param("userId",null)
+                .param("userId","")
                 .param("startDate","2019-10-22")
                 .param("endDate","2019-10-23")
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
-                .andExpect(jsonPath("$.code").value(-1));
+                .andExpect(jsonPath("$.err.code").value(-1));
 
     }
     @Test
@@ -60,7 +60,7 @@ public class WeightRecordControllerTest {
                 .param("endDate","2019-10-23")
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
-                .andExpect(jsonPath("$.code").value(-9));
+                .andExpect(jsonPath("$.err.code").value(-9));
 
     }
     @Test
@@ -71,7 +71,7 @@ public class WeightRecordControllerTest {
                 .param("endDate","2019-10-23")
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
-                .andExpect(jsonPath("$.code").value(-2));
+                .andExpect(jsonPath("$.err.code").value(-2));
 
     }
     @Test
@@ -82,7 +82,7 @@ public class WeightRecordControllerTest {
                 .param("endDate","")
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
-                .andExpect(jsonPath("$.code").value(-3));
+                .andExpect(jsonPath("$.err.code").value(-3));
 
     }
     @Test
@@ -93,7 +93,7 @@ public class WeightRecordControllerTest {
                 .param("endDate","2019-10-22")
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
-                .andExpect(jsonPath("$.code").value(-4));
+                .andExpect(jsonPath("$.err.code").value(-4));
 
     }
     @Test
@@ -104,7 +104,7 @@ public class WeightRecordControllerTest {
                 .param("endDate","2019-10-31")
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
-                .andExpect(jsonPath("$.code").value(-6));
+                .andExpect(jsonPath("$.err.code").value(-6));
 
     }
     @Test
@@ -116,7 +116,7 @@ public class WeightRecordControllerTest {
 
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
-                .andExpect(jsonPath("$.code").value(-7));
+                .andExpect(jsonPath("$.err.code").value(-7));
 
     }
 //添加体重记录
@@ -134,12 +134,12 @@ public class WeightRecordControllerTest {
     @Test
     public void TestAddWeightRecordWithUserIdEmptyExpectError() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/weightRecord/addWeightRecord") //请求的url,请求的方法是get
-                .param("userId",null)
+                .param("userId","")
                 .param("weight","600")
                 .param("addDate","2019-10-23")
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
-                .andExpect(jsonPath("$.code").value(-1));
+                .andExpect(jsonPath("$.err.code").value(-1));
 
     }
     @Test
@@ -150,7 +150,7 @@ public class WeightRecordControllerTest {
                 .param("addDate","2019-10-23")
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
-                .andExpect(jsonPath("$.code").value(-6));
+                .andExpect(jsonPath("$.err.code").value(-6));
 
     }
     @Test
@@ -161,7 +161,7 @@ public class WeightRecordControllerTest {
                 .param("addDate","")
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
-                .andExpect(jsonPath("$.code").value(-2));
+                .andExpect(jsonPath("$.err.code").value(-2));
 
     }
     @Test
@@ -172,18 +172,18 @@ public class WeightRecordControllerTest {
                 .param("addDate","2019-10-31")
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
-                .andExpect(jsonPath("$.code").value(-8));
+                .andExpect(jsonPath("$.err.code").value(-8));
 
     }
     @Test
     public void TestAddWeightRecordWithWeightEmptyExpectError() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/weightRecord/addWeightRecord") //请求的url,请求的方法是get
                 .param("userId","1")
-                .param("weight",null)
+                .param("weight","")
                 .param("addDate","2019-10-30")
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
-                .andExpect(jsonPath("$.code").value(-3));
+                .andExpect(jsonPath("$.err.code").value(-3));
 
     }
     @Test
@@ -194,7 +194,7 @@ public class WeightRecordControllerTest {
                 .param("addDate","2019-10-30")
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
-                .andExpect(jsonPath("$.code").value(-5));
+                .andExpect(jsonPath("$.err.code").value(-5));
 
     }
     //修改体重记录
@@ -211,11 +211,11 @@ public class WeightRecordControllerTest {
     @Test
     public void TestUpdateWeightRecordWithUserIdEmptyExpectError() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/weightRecord/updateWeightRecord") //请求的url,请求的方法是get
-                .param("recordId",null)
+                .param("recordId","")
                 .param("weight","600")
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
-                .andExpect(jsonPath("$.code").value(-1));
+                .andExpect(jsonPath("$.err.code").value(-1));
 
     }
     @Test
@@ -225,17 +225,17 @@ public class WeightRecordControllerTest {
                 .param("weight","600")
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
-                .andExpect(jsonPath("$.code").value(-5));
+                .andExpect(jsonPath("$.err.code").value(-5));
 
     }
     @Test
     public void TestUpdateWeightRecordWithWeightEmptyExpectError() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/weightRecord/updateWeightRecord") //请求的url,请求的方法是get
                 .param("recordId","1")
-                .param("weight",null)
+                .param("weight","")
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
-                .andExpect(jsonPath("$.code").value(-2));
+                .andExpect(jsonPath("$.err.code").value(-2));
 
     }
     @Test
@@ -245,7 +245,7 @@ public class WeightRecordControllerTest {
                 .param("weight","-600")
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
-                .andExpect(jsonPath("$.code").value(-4));
+                .andExpect(jsonPath("$.err.code").value(-4));
 
     }
 }

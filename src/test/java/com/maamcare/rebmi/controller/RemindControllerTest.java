@@ -32,9 +32,9 @@ public class RemindControllerTest {
     //根据用户Id和时间查询某一天体重信息
     @Test
     public void TestGetWeightByUserIdAndDateExpectSuccess() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/weightRecord/getWeightByUserIdAndDate") //请求的url,请求的方法是get
+        mockMvc.perform(MockMvcRequestBuilders.get("/remind/getWeightByUserIdAndDate") //请求的url,请求的方法是get
                 .param("userId","1")
-                .param("anyDate","2019-10-23")
+                .param("anyDate","2019-10-22")
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
                 .andExpect(jsonPath("$.data.userId").value(1))
@@ -43,42 +43,42 @@ public class RemindControllerTest {
     }
     @Test
     public void TestGetWeightByUserIdAndDateWithUserIdEmptyExpectError() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/weightRecord/getWeightByUserIdAndDate") //请求的url,请求的方法是get
-                .param("userId",null)
+        mockMvc.perform(MockMvcRequestBuilders.get("/remind/getWeightByUserIdAndDate") //请求的url,请求的方法是get
+                .param("userId","")
                 .param("anyDate","2019-10-23")
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
-                .andExpect(jsonPath("$.code").value(-1));
+                .andExpect(jsonPath("$.err.code").value(-1));
 
     }
     @Test
     public void TestGetWeightByUserIdAndDateWithUserIdNegativeExpectError() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/weightRecord/getWeightByUserIdAndDate") //请求的url,请求的方法是get
+        mockMvc.perform(MockMvcRequestBuilders.get("/remind/getWeightByUserIdAndDate") //请求的url,请求的方法是get
                 .param("userId","-1")
                 .param("anyDate","2019-10-23")
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
-                .andExpect(jsonPath("$.code").value(-3));
+                .andExpect(jsonPath("$.err.code").value(-3));
 
     }
     @Test
     public void TestGetWeightByUserIdAndDateWithAnyDateEmptyExpectError() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/weightRecord/getWeightByUserIdAndDate") //请求的url,请求的方法是get
+        mockMvc.perform(MockMvcRequestBuilders.get("/remind/getWeightByUserIdAndDate") //请求的url,请求的方法是get
                 .param("userId","1")
                 .param("anyDate","")
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
-                .andExpect(jsonPath("$.code").value(-2));
+                .andExpect(jsonPath("$.err.code").value(-2));
 
     }
     @Test
     public void TestGetWeightByUserIdAndDateWithAnyDateGreaterThanCurrentDateExpectError() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/weightRecord/getWeightByUserIdAndDate") //请求的url,请求的方法是get
+        mockMvc.perform(MockMvcRequestBuilders.get("/remind/getWeightByUserIdAndDate") //请求的url,请求的方法是get
                 .param("userId","1")
                 .param("anyDate","2019-11-15")
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
-                .andExpect(jsonPath("$.code").value(-4));
+                .andExpect(jsonPath("$.err.code").value(-4));
 
     }
 
