@@ -72,8 +72,8 @@ public class UserConroller {
         ErrMap err = new ErrMap(0,"");
 
         User user=new User();
-        if(userId==null){
-            throw new MyException(-1,"为空");
+        if(userId==123){
+            throw new MyException(-1,"123");
         }
 
         Map<String,String> res= new HashMap<>();

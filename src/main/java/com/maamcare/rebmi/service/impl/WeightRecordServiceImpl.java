@@ -1,11 +1,11 @@
 package com.maamcare.rebmi.service.impl;
 
-import com.maamcare.rebmi.dto.MyDto;
+
 import com.maamcare.rebmi.po.WeightRecord;
 import com.maamcare.rebmi.service.WeightRecordService;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
+
 import java.util.List;
 
 @Service

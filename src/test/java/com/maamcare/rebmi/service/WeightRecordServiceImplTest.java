@@ -1,6 +1,6 @@
 package com.maamcare.rebmi.service;
 
-import com.maamcare.rebmi.dto.MyDto;
+
 import com.maamcare.rebmi.exception.MyException;
 import com.maamcare.rebmi.po.User;
 import com.maamcare.rebmi.po.WeightRecord;

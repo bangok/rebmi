@@ -1,9 +1,9 @@
 package com.maamcare.rebmi.service;
 
-import com.maamcare.rebmi.dto.MyDto;
+
 import com.maamcare.rebmi.po.WeightRecord;
 
-import java.util.Date;
+
 import java.util.List;
 
 public interface WeightRecordService {
