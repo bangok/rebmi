@@ -1,6 +1,7 @@
 package com.maamcare.rebmi.controller;
 
 
+
 import com.maamcare.rebmi.exception.MyException;
 import com.maamcare.rebmi.po.User;
 import com.maamcare.rebmi.service.UserService;
@@ -70,21 +71,11 @@ public class UserConroller {
     public Result getUserInfoByUserId(@RequestParam Integer userId) {
         ErrMap err = new ErrMap(0,"");
 
-        User user;
-        user = userService.getUserInfoByUserid(userId);
+        User user=new User();
+        if(userId==null){
+            throw new MyException(-1,"为空");
+        }
 
-
-//        try {
-//            user = userService.getUserInfoByUserid(userId);
-//        } catch (MyException e) {
-//            err.setCode(e.getCode());
-//            err.setMsg(e.getMsg());
-//            return Result.builder()
-//                    .status(0)
-//                    .err(err)
-//                    .data(null)
-//                    .build();
-//        }
         Map<String,String> res= new HashMap<>();
         res.put("username",user.getUsername());
         res.put("password",user.getPassword());
