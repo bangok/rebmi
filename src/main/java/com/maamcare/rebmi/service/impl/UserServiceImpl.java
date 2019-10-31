@@ -20,7 +20,6 @@ public class UserServiceImpl implements UserService {
         if(user==null){
             throw new MyException(-3,"用户不存在");
         }
-        System.out.println("996996996");
         return user;
     }
 
