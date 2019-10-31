@@ -35,7 +35,6 @@ public class UserConroller {
                            @RequestParam String password,
                            @RequestParam Integer height,
                            HttpSession session){
-
         //TODO
         Map<String,Integer> res= new HashMap<>();
         res.put("userId",1);
