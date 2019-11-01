@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 public class RemindServiceImpl implements RemindService {
 
     @Override
+
     public WeightRecord getWeightByUserIdAndDate(Integer userId, String anyDate) {
         return null;
     }

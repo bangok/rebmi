@@ -17,16 +17,31 @@ public class TestExceptionAdd {
         }
         System.out.println(System.nanoTime() - start);
     }
+    @Test
+    public void noExceptionSuccessD(){
+        long start = System.nanoTime();
+        int a = 0;
+        int b = 0;
+        try {
+            for (int i = 0; i < 1000000; i++) {
+                a++;
+                b++;
+            }
+        }catch (Exception e) {
+        }
 
+        System.out.println(System.nanoTime() - start);
+    }
     @Test
     public void haveExceptionSuccess(){
         long start = System.nanoTime();
         int a = 0;
+        int b = 0;
         for (int i = 0; i < 1000000; i++) {
-            try {
-                a++;
-            } catch (Exception e) {
-            }
+            a++;
+            b++;
+            throw new RuntimeException();
+
         }
         System.out.println(System.nanoTime() - start);
     }
