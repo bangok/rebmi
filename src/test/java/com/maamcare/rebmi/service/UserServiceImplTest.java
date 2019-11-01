@@ -56,7 +56,7 @@ public class UserServiceImplTest {
         } catch (MyException ex) {
             e =ex;
         }
-        Assertions.assertThat(1).isEqualTo(-10);
+        Assertions.assertThat(e.getCode()).isEqualTo(-10);
     }
 
 

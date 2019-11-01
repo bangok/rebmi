@@ -1,5 +1,6 @@
 package com.maamcare.rebmi.service.impl;
 
+import com.maamcare.rebmi.annotation.Access;
 import com.maamcare.rebmi.dao.UserMapper;
 import com.maamcare.rebmi.exception.MyException;
 import com.maamcare.rebmi.po.User;
@@ -16,15 +17,6 @@ public class UserServiceImpl implements UserService {
     UserMapper userMapper;
 
     @Override
-    public User getUserInfoByUserid(Integer userid) {
-        User user = userMapper.getUserInfoByUserid(userid);
-        if(user==null){
-            throw new MyException(-3,"用户不存在");
-        }
-        return user;
-    }
-
-    @Override
     public Integer register(User user) throws MyException{
         try{
             userMapper.addUser(user);
@@ -37,16 +29,33 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Integer login (String username, String password)throws MyException {
-        return null;
+        User userInfo = userMapper.getUserByUsername(username);
+        if(userInfo == null){
+            throw new MyException(-8,"用户不存在");
+        }
+        if(!userInfo.getPassword().equals(password)){
+            throw new MyException(-9,"密码错误");
+        }
+        return userInfo.getId();
     }
+
+
 
     @Override
     public User getUserInfoByUserId(Integer userId) throws MyException {
-        return null;
+        User user = userMapper.getUserByUserId(userId);
+        if(user == null){
+            throw new MyException(-3,"用户不存在");
+        }
+        return user;
     }
 
     @Override
     public boolean updateHeight(Integer userId, Integer height) throws MyException {
-        return false;
+        Integer col = userMapper.upDateHeight(userId,height);
+        if(col==0){
+            throw new MyException(-5,"用户不存在");
+        }
+        return true;
     }
 }

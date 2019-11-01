@@ -2,15 +2,14 @@ package com.maamcare.rebmi.controller;
 
 
 
-import com.maamcare.rebmi.exception.MyException;
+import com.maamcare.rebmi.annotation.Access;
 import com.maamcare.rebmi.po.User;
 import com.maamcare.rebmi.service.UserService;
 import com.maamcare.rebmi.vo.ErrMap;
-import com.maamcare.rebmi.vo.R;
-import com.maamcare.rebmi.vo.Result;
+import com.maamcare.rebmi.vo.UserLoginInfoVo;
 import com.maamcare.rebmi.vo.UserRegisterInfoVo;
+import com.maamcare.rebmi.vo.common.Result;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,17 +25,16 @@ public class UserConroller {
     @Autowired
     UserService userService;
 
-    @GetMapping("/noLogin")
-    public Result noLogin(HttpSession session){
-        return Result.builder()
-                .status(0)
-                .err(new ErrMap(-1,"用户未登录"))
-                .data(null)
-                .build();
+
+    @GetMapping("/test")
+    @Access(authorities = {"LOGIN"})
+    public Result test(){
+        return Result.success("权限控制");
     }
 
+
     @PostMapping("/register")
-    public R register(@Validated UserRegisterInfoVo userRegisterInfoVo,
+    public Result register(@Validated UserRegisterInfoVo userRegisterInfoVo,
                            HttpSession session){
         User user = new User();
         user.setUsername(userRegisterInfoVo.getUsername());
@@ -46,58 +44,69 @@ public class UserConroller {
         session.setAttribute("loginUser",user);
         Map resData = new HashMap();
         resData.put("userId",userId);
-        return R.success(resData);
+        return Result.success(resData);
     }
 
-    @PostMapping("/login")
-    public Result login(@RequestParam String username,
-                           @RequestParam String password
+    @GetMapping("/login")
+    public Result login(@Validated UserLoginInfoVo userLoginInfoVo,
+                        HttpSession session
                            ){//HttpSession session
-        //TODO
-        Map<String,Integer> res= new HashMap<>();
-        res.put("userid",1);
 
-        return Result.builder()
-                .status(1)
-                .err(new ErrMap(0,""))
-                .data(null)
-                .build();
+        Integer userId = userService.login(userLoginInfoVo.username,userLoginInfoVo.password);
+        session.setAttribute("loginUser",userLoginInfoVo.username);
+        Map resData = new HashMap();
+        resData.put("userId",userId);
+        return Result.success(resData);
 
     }
+
 
 
     @GetMapping("/getUserInfoByUserId")
-    public Result getUserInfoByUserId(@RequestParam Integer userId){
+    public Result getUserInfoByUserId(Integer userId){
         ErrMap err = new ErrMap(0,"");
-        User user;
-//        try {
-            user = userService.getUserInfoByUserid(userId);
-//        } catch (MyException e) {
-//            err.setCode(e.getCode());
-//            err.setMsg(e.getMsg());
-//            return Result.builder()
-//                    .status(0)
-//                    .err(err)
-//                    .data(null)
-//                    .build();
-//        }
-        Map<String,String> res= new HashMap<>();
-        res.put("username",user.getUsername());
-        res.put("password",user.getPassword());
-        return Result.builder()
-                .status(1)
-                .err(err)
-                .data(res)
-                .build();
+        if(userId==null){
+            err.setCode(-1);
+            err.setMsg("用户id为空");
+            return Result.fail(err);
+        }
+        if(userId<0){
+            err.setCode(-2);
+            err.setMsg("用户id为负");
+            return Result.fail(err);
+        }
+
+        User user = userService.getUserInfoByUserId(userId);
+        Map resData = new HashMap();
+        resData.put("username",user.getUsername());
+        resData.put("password",user.getPassword());
+        return Result.success(resData);
     }
 
     @GetMapping("/updateHeight")
-    public Result updateHeight(@RequestParam Integer userId,@RequestParam Integer hieght){
-
-        return Result.builder()
-                .status(1)
-                .err(new ErrMap(0,""))
-                .data(null)
-                .build();
+    public Result updateHeight(Integer userId,Integer height){
+        ErrMap err = new ErrMap(0,"");
+        if(userId==null){
+            err.setCode(-1);
+            err.setMsg("用户id为空");
+            return Result.fail(err);
+        }
+        if(userId<0){
+            err.setCode(-2);
+            err.setMsg("用户id为负");
+            return Result.fail(err);
+        }
+        if(height==null){
+            err.setCode(-3);
+            err.setMsg("用户身高为空");
+            return Result.fail(err);
+        }
+        if(height<0){
+            err.setCode(-4);
+            err.setMsg("用户身高为负");
+            return Result.fail(err);
+        }
+        userService.updateHeight(userId,height);
+        return Result.success(null);
     }
 }

@@ -9,7 +9,7 @@
         <result column="height" jdbcType="INTEGER" property="height" />
     </resultMap>
 
-    <select id="getUserInfoByUserid" resultMap="BaseResultMap" parameterType="Integer">
+    <select id="getUserByUserId" resultMap="BaseResultMap" parameterType="Integer">
         select * from user where id = #{userid}
     </select>
 
