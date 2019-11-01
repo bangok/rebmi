@@ -5,6 +5,7 @@ import com.maamcare.rebmi.exception.MyException;
 import com.maamcare.rebmi.po.User;
 import com.maamcare.rebmi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
 
@@ -25,7 +26,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Integer register(User user) throws MyException{
-        return null;
+        try{
+            userMapper.addUser(user);
+        }catch (DuplicateKeyException e){
+            throw new MyException(-10,"用户已存在");
+        }
+        User userInfo = userMapper.getUserByUsername(user.getUsername());
+        return userInfo.getId();
     }
 
     @Override

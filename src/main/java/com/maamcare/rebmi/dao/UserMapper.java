@@ -9,4 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public interface UserMapper {
     public User getUserInfoByUserid(Integer userid);
+    public boolean addUser(User user);
+    public User getUserByUsername(String username);
 }

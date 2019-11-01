@@ -62,7 +62,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void testRegisterWithUsernameIsNollExpectCodeIsNegativeOne() throws Exception {
+    public void testRegisterWithUsernameIsNullExpectCodeIsNegativeOne() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/user/register")
                 .param("username","")
                 .param("password","123456")
@@ -71,6 +71,7 @@ public class UserControllerTest {
                 .accept(MediaType.APPLICATION_JSON_UTF8)
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
+                .andExpect(jsonPath("$.status").value(0))
                 .andExpect(jsonPath("$.err.code").value(-1));
     }
 
@@ -84,11 +85,12 @@ public class UserControllerTest {
                 .accept(MediaType.APPLICATION_JSON_UTF8)
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
+                .andExpect(jsonPath("$.status").value(0))
                 .andExpect(jsonPath("$.err.code").value(-2));
     }
 
     @Test
-    public void testRegisterWithUsernameLenghtLessThanEightExpectCodeIsNegativeThree() throws Exception {
+    public void testRegisterWithUsernameLenghtLessThanThreeExpectCodeIsNegativeThree() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/user/register")
                 .param("username","a")
                 .param("password","123456")
@@ -97,11 +99,12 @@ public class UserControllerTest {
                 .accept(MediaType.APPLICATION_JSON_UTF8)
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
+                .andExpect(jsonPath("$.status").value(0))
                 .andExpect(jsonPath("$.err.code").value(-3));
     }
 
     @Test
-    public void testRegisterWithUsernameHaveNotEnglistAndNumberCharExpectCodeIsNegativeFour() throws Exception {
+    public void testRegisterWithUsernameExcludetEnglistAndNumberCharExpectCodeIsNegativeFour() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/user/register")
                 .param("username","a@163d")
                 .param("password","123456")
@@ -110,6 +113,7 @@ public class UserControllerTest {
                 .accept(MediaType.APPLICATION_JSON_UTF8)
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
+                .andExpect(jsonPath("$.status").value(0))
                 .andExpect(jsonPath("$.err.code").value(-4));
     }
 
@@ -123,6 +127,7 @@ public class UserControllerTest {
                 .accept(MediaType.APPLICATION_JSON_UTF8)
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
+                .andExpect(jsonPath("$.status").value(0))
                 .andExpect(jsonPath("$.err.code").value(-5));
     }
 
@@ -136,11 +141,12 @@ public class UserControllerTest {
                 .accept(MediaType.APPLICATION_JSON_UTF8)
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
+                .andExpect(jsonPath("$.status").value(0))
                 .andExpect(jsonPath("$.err.code").value(-6));
     }
 
     @Test
-    public void testRegisterWithPasswordHaveNotEnglishndNumberExpectCodeIsNegativeSeven() throws Exception {
+    public void testRegisterWithUsernameHaveIllegalCharacterExpectCodeIsNegativeSeven() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/user/register")
                 .param("username","a163d")
                 .param("password","ddddd@")
@@ -149,6 +155,7 @@ public class UserControllerTest {
                 .accept(MediaType.APPLICATION_JSON_UTF8)
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
+                .andExpect(jsonPath("$.status").value(0))
                 .andExpect(jsonPath("$.err.code").value(-7));
     }
 
@@ -162,11 +169,12 @@ public class UserControllerTest {
                 .accept(MediaType.APPLICATION_JSON_UTF8)
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
+                .andExpect(jsonPath("$.status").value(0))
                 .andExpect(jsonPath("$.err.code").value(-8));
     }
 
     @Test
-    public void testRegisterWithHeightIsNegExpectCodeIsNegativeNine() throws Exception {
+    public void testRegisterWithHeightIsNegativeExpectCodeIsNegativeNine() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/user/register")
                 .param("username","a163d")
                 .param("password","ddddd")
@@ -175,6 +183,7 @@ public class UserControllerTest {
                 .accept(MediaType.APPLICATION_JSON_UTF8)
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
+                .andExpect(jsonPath("$.status").value(0))
                 .andExpect(jsonPath("$.err.code").value(-9));
     }
 
@@ -204,6 +213,7 @@ public class UserControllerTest {
                 .accept(MediaType.APPLICATION_JSON_UTF8)
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
+                .andExpect(jsonPath("$.status").value(0))
                 .andExpect(jsonPath("$.err.code").value(-1));
     }
 
@@ -216,6 +226,7 @@ public class UserControllerTest {
                 .accept(MediaType.APPLICATION_JSON_UTF8)
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
+                .andExpect(jsonPath("$.status").value(0))
                 .andExpect(jsonPath("$.err.code").value(-2));
     }
 
@@ -228,11 +239,12 @@ public class UserControllerTest {
                 .accept(MediaType.APPLICATION_JSON_UTF8)
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
+                .andExpect(jsonPath("$.status").value(0))
                 .andExpect(jsonPath("$.err.code").value(-3));
     }
 
     @Test
-    public void testLoginWithUsernameNotIncludeEnglishAndNumberExpectCodeIsNegativeFour() throws Exception {
+    public void testLoginWithUsernameIllegalCharacterExpectCodeIsNegativeFour() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/user/login")
                 .param("username","d@dd")
                 .param("password","123456")
@@ -240,6 +252,7 @@ public class UserControllerTest {
                 .accept(MediaType.APPLICATION_JSON_UTF8)
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
+                .andExpect(jsonPath("$.status").value(0))
                 .andExpect(jsonPath("$.err.code").value(-4));
     }
 
@@ -252,6 +265,7 @@ public class UserControllerTest {
                 .accept(MediaType.APPLICATION_JSON_UTF8)
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
+                .andExpect(jsonPath("$.status").value(0))
                 .andExpect(jsonPath("$.err.code").value(-5));
     }
 
@@ -264,6 +278,7 @@ public class UserControllerTest {
                 .accept(MediaType.APPLICATION_JSON_UTF8)
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
+                .andExpect(jsonPath("$.status").value(0))
                 .andExpect(jsonPath("$.err.code").value(-6));
     }
 
@@ -276,6 +291,7 @@ public class UserControllerTest {
                 .accept(MediaType.APPLICATION_JSON_UTF8)
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
+                .andExpect(jsonPath("$.status").value(0))
                 .andExpect(jsonPath("$.err.code").value(-7));
     }
 
@@ -303,6 +319,7 @@ public class UserControllerTest {
                 .accept(MediaType.APPLICATION_JSON_UTF8)
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
+                .andExpect(jsonPath("$.status").value(0))
                 .andExpect(jsonPath("$.err.code").value(-1));
     }
 
@@ -314,6 +331,7 @@ public class UserControllerTest {
                 .accept(MediaType.APPLICATION_JSON_UTF8)
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
+                .andExpect(jsonPath("$.status").value(0))
                 .andExpect(jsonPath("$.err.code").value(-2));
     }
 
@@ -341,6 +359,7 @@ public class UserControllerTest {
                 .accept(MediaType.APPLICATION_JSON_UTF8)
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
+                .andExpect(jsonPath("$.status").value(0))
                 .andExpect(jsonPath("$.err.code").value(-1));
     }
 
@@ -353,6 +372,7 @@ public class UserControllerTest {
                 .accept(MediaType.APPLICATION_JSON_UTF8)
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
+                .andExpect(jsonPath("$.status").value(0))
                 .andExpect(jsonPath("$.err.code").value(-2));
     }
 
@@ -365,6 +385,7 @@ public class UserControllerTest {
                 .accept(MediaType.APPLICATION_JSON_UTF8)
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
+                .andExpect(jsonPath("$.status").value(0))
                 .andExpect(jsonPath("$.err.code").value(-3));
     }
 
@@ -377,6 +398,7 @@ public class UserControllerTest {
                 .accept(MediaType.APPLICATION_JSON_UTF8)
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
+                .andExpect(jsonPath("$.status").value(0))
                 .andExpect(jsonPath("$.err.code").value(-4));
     }
 

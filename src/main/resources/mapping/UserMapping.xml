@@ -13,4 +13,12 @@
         select * from user where id = #{userid}
     </select>
 
+    <insert id="addUser" parameterType="com.maamcare.rebmi.po.User">
+        insert into user (username,password,height) values(#{username},#{password},#{height})
+    </insert>
+
+    <select id="getUserByUsername" resultMap="BaseResultMap" parameterType="String">
+        select * from user where username = #{username}
+    </select>
+
 </mapper>

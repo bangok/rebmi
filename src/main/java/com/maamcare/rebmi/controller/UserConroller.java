@@ -6,9 +6,12 @@ import com.maamcare.rebmi.exception.MyException;
 import com.maamcare.rebmi.po.User;
 import com.maamcare.rebmi.service.UserService;
 import com.maamcare.rebmi.vo.ErrMap;
+import com.maamcare.rebmi.vo.R;
 import com.maamcare.rebmi.vo.Result;
+import com.maamcare.rebmi.vo.UserRegisterInfoVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
@@ -33,20 +36,17 @@ public class UserConroller {
     }
 
     @PostMapping("/register")
-    public Result register(@RequestParam String username,
-                           @RequestParam String password,
-                           @RequestParam Integer height,
+    public R register(@Validated UserRegisterInfoVo userRegisterInfoVo,
                            HttpSession session){
-        //TODO
-        Map<String,Integer> res= new HashMap<>();
-        res.put("userId",1);
-
-        return Result.builder()
-                .status(1)
-                .err(new ErrMap(0,""))
-                .data(res)
-                .build();
-
+        User user = new User();
+        user.setUsername(userRegisterInfoVo.getUsername());
+        user.setPassword(userRegisterInfoVo.getPassword());
+        user.setHeight(userRegisterInfoVo.getHeight());
+        Integer userId =userService.register(user);
+        session.setAttribute("loginUser",user);
+        Map resData = new HashMap();
+        resData.put("userId",userId);
+        return R.success(resData);
     }
 
     @PostMapping("/login")

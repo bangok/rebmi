@@ -1,7 +1,10 @@
 package com.maamcare.rebmi.exception;
 
 import com.maamcare.rebmi.vo.ErrMap;
+import com.maamcare.rebmi.vo.R;
 import com.maamcare.rebmi.vo.Result;
+import org.springframework.context.support.DefaultMessageSourceResolvable;
+import org.springframework.validation.BindException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -9,6 +12,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 @ControllerAdvice
 public class GlobalDefaultExceptionHandler {
@@ -30,9 +35,19 @@ public class GlobalDefaultExceptionHandler {
                     .err(errMap)
                     .data(null)
                     .build();
-        }else
-        {
+        }else if(e instanceof BindException){
+            String str = ((BindException)e).getBindingResult().getAllErrors().stream().map(DefaultMessageSourceResolvable::getDefaultMessage).collect(Collectors.joining());
+            String[] arr = str.split(",");
+            errMap.setCode(Integer.valueOf(arr[0]));
+            errMap.setMsg(arr[1]);
+            return Result.builder()
+                    .status(0)
+                    .err(errMap)
+                    .data(null)
+                    .build();
 
+        }else {
+            System.out.println(e);
             errMap.setMsg(e.getMessage());
             errMap.setCode(-200);
                    return Result.builder()
