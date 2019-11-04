@@ -122,7 +122,7 @@ public class UserServiceImplTest {
     }
 
     @Test
-    public void testGetUserInfoByUserIdWithHaveNothUserIdExpectCodeIsNegativeThree(){
+    public void testGetUserInfoByUserIdWithUserIdIsNonExistentdExpectCodeIsNegativeThree(){
         Integer userId = 999;
         MyException e=new MyException();
         User user = new User();
@@ -146,7 +146,7 @@ public class UserServiceImplTest {
     }
 
     @Test
-    public void testUpdateHeightWithUserIdIsNotHaveExpectCodeIsNegativeFve(){
+    public void testUpdateHeightWithUserIdIsNonExistentdExpectCodeIsNegativeFve(){
         Integer userId = 999;
         Integer height = 176;
         MyException e=new MyException();

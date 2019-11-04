@@ -18,7 +18,7 @@ import java.lang.reflect.Method;
 
 
 /**
- * 登录拦截器，使用sessionId存储
+ * 全局拦截器
  *
  * */
 @Component
