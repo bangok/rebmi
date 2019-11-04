@@ -5,13 +5,13 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
+
 
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -37,8 +37,9 @@ public class RemindControllerTest {
                 .param("anyDate","2019-10-22")
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
-                .andExpect(jsonPath("$.data.userId").value(1))
-                .andExpect(jsonPath("$.status").value(1));
+                .andExpect(jsonPath("$.status").value(1))
+                .andExpect(jsonPath("$.data.userId").value(1));
+
 
     }
     @Test
@@ -48,6 +49,7 @@ public class RemindControllerTest {
                 .param("anyDate","2019-10-23")
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
+                .andExpect(jsonPath("$.status").value(0))
                 .andExpect(jsonPath("$.err.code").value(-1));
 
     }
@@ -58,6 +60,7 @@ public class RemindControllerTest {
                 .param("anyDate","2019-10-23")
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
+                .andExpect(jsonPath("$.status").value(0))
                 .andExpect(jsonPath("$.err.code").value(-3));
 
     }
@@ -68,6 +71,7 @@ public class RemindControllerTest {
                 .param("anyDate","")
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
+                .andExpect(jsonPath("$.status").value(0))
                 .andExpect(jsonPath("$.err.code").value(-2));
 
     }
@@ -78,6 +82,7 @@ public class RemindControllerTest {
                 .param("anyDate","2019-11-15")
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
+                .andExpect(jsonPath("$.status").value(0))
                 .andExpect(jsonPath("$.err.code").value(-4));
 
     }

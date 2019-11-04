@@ -38,6 +38,7 @@ public class WeightRecordControllerTest {
                 .param("endDate","2019-10-23")
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
+                .andExpect(jsonPath("$.status").value(1))
                 .andExpect(jsonPath("$..data.length()").value(2));
 
     }
@@ -49,6 +50,7 @@ public class WeightRecordControllerTest {
                 .param("endDate","2019-10-23")
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
+                .andExpect(jsonPath("$.status").value(0))
                 .andExpect(jsonPath("$.err.code").value(-1));
 
     }
@@ -60,6 +62,7 @@ public class WeightRecordControllerTest {
                 .param("endDate","2019-10-23")
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
+                .andExpect(jsonPath("$.status").value(0))
                 .andExpect(jsonPath("$.err.code").value(-9));
 
     }
@@ -71,6 +74,7 @@ public class WeightRecordControllerTest {
                 .param("endDate","2019-10-23")
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
+                .andExpect(jsonPath("$.status").value(0))
                 .andExpect(jsonPath("$.err.code").value(-2));
 
     }
@@ -82,6 +86,7 @@ public class WeightRecordControllerTest {
                 .param("endDate","")
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
+                .andExpect(jsonPath("$.status").value(0))
                 .andExpect(jsonPath("$.err.code").value(-3));
 
     }
@@ -93,6 +98,7 @@ public class WeightRecordControllerTest {
                 .param("endDate","2019-10-22")
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
+                .andExpect(jsonPath("$.status").value(0))
                 .andExpect(jsonPath("$.err.code").value(-4));
 
     }
@@ -104,6 +110,7 @@ public class WeightRecordControllerTest {
                 .param("endDate","2019-10-31")
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
+                .andExpect(jsonPath("$.status").value(0))
                 .andExpect(jsonPath("$.err.code").value(-6));
 
     }
@@ -116,6 +123,7 @@ public class WeightRecordControllerTest {
 
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
+                .andExpect(jsonPath("$.status").value(0))
                 .andExpect(jsonPath("$.err.code").value(-7));
 
     }
@@ -139,6 +147,7 @@ public class WeightRecordControllerTest {
                 .param("addDate","2019-10-23")
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
+                .andExpect(jsonPath("$.status").value(0))
                 .andExpect(jsonPath("$.err.code").value(-1));
 
     }
@@ -150,6 +159,7 @@ public class WeightRecordControllerTest {
                 .param("addDate","2019-10-23")
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
+                .andExpect(jsonPath("$.status").value(0))
                 .andExpect(jsonPath("$.err.code").value(-6));
 
     }
@@ -161,6 +171,7 @@ public class WeightRecordControllerTest {
                 .param("addDate","")
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
+                .andExpect(jsonPath("$.status").value(0))
                 .andExpect(jsonPath("$.err.code").value(-2));
 
     }
@@ -172,6 +183,7 @@ public class WeightRecordControllerTest {
                 .param("addDate","2019-10-31")
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
+                .andExpect(jsonPath("$.status").value(0))
                 .andExpect(jsonPath("$.err.code").value(-8));
 
     }
@@ -183,6 +195,7 @@ public class WeightRecordControllerTest {
                 .param("addDate","2019-10-30")
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
+                .andExpect(jsonPath("$.status").value(0))
                 .andExpect(jsonPath("$.err.code").value(-3));
 
     }
@@ -194,6 +207,7 @@ public class WeightRecordControllerTest {
                 .param("addDate","2019-10-30")
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
+                .andExpect(jsonPath("$.status").value(0))
                 .andExpect(jsonPath("$.err.code").value(-5));
 
     }
@@ -205,6 +219,7 @@ public class WeightRecordControllerTest {
                 .param("weight","600")
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
+                .andExpect(jsonPath("$.status").value(0))
                 .andExpect(jsonPath("$.status").value(1));
 
     }
@@ -215,6 +230,7 @@ public class WeightRecordControllerTest {
                 .param("weight","600")
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
+                .andExpect(jsonPath("$.status").value(0))
                 .andExpect(jsonPath("$.err.code").value(-1));
 
     }
@@ -225,6 +241,7 @@ public class WeightRecordControllerTest {
                 .param("weight","600")
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
+                .andExpect(jsonPath("$.status").value(0))
                 .andExpect(jsonPath("$.err.code").value(-5));
 
     }
@@ -235,6 +252,7 @@ public class WeightRecordControllerTest {
                 .param("weight","")
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
+                .andExpect(jsonPath("$.status").value(0))
                 .andExpect(jsonPath("$.err.code").value(-2));
 
     }
@@ -245,6 +263,7 @@ public class WeightRecordControllerTest {
                 .param("weight","-600")
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
+                .andExpect(jsonPath("$.status").value(0))
                 .andExpect(jsonPath("$.err.code").value(-4));
 
     }

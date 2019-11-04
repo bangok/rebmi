@@ -5,9 +5,14 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+
 /**
  * 已废弃，尽量使用common下的Result
  * */
+
+import javax.validation.constraints.NotNull;
+
+
 
 @Builder
 @Setter
