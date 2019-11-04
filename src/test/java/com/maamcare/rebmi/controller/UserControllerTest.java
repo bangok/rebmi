@@ -98,7 +98,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void testRegisterWithUsernameExcludetEnglistAndNumberCharExpectCodeIsNegativeFour() throws Exception {
+    public void testRegisterWithUsernameIsHaveIllegalCharacterExpectCodeIsNegativeFour() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/user/register")
                 .param("username","a@163d")
                 .param("password","123456")
@@ -139,7 +139,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void testRegisterWithUsernameHaveIllegalCharacterExpectCodeIsNegativeSeven() throws Exception {
+    public void testRegisterWithPasswordHaveIllegalCharacterExpectCodeIsNegativeSeven() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/user/register")
                 .param("username","zcf")
                 .param("password","ddddd@")
@@ -236,7 +236,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void testLoginWithUsernameIllegalCharacterExpectCodeIsNegativeFour() throws Exception {
+    public void testLoginWithUsernameHaveIllegalCharacterExpectCodeIsNegativeFour() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/user/login")
                 .param("username","d@dd")
                 .param("password","123456")
@@ -315,7 +315,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void testGetUserInfoByUserIdWithUserIdIsNegExpectCodeIsNegativeTwo()throws Exception{
+    public void testGetUserInfoByUserIdWithUserIdIsNegativeExpectCodeIsNegativeTwo()throws Exception{
         mockMvc.perform(MockMvcRequestBuilders.get("/user/getUserInfoByUserId")
                 .param("userId","-3")
                 .contentType("application/json;charset=UTF-8") //数据的格式
@@ -367,7 +367,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void testupdateHeightWithUserIdIsNegExpectCodeIsNegativeTwo()throws Exception{
+    public void testupdateHeightWithUserIdIsNegtiveExpectCodeIsNegativeTwo()throws Exception{
         mockMvc.perform(MockMvcRequestBuilders.get("/user/updateHeight")
                 .param("userId","-1")
                 .param("height","190")
@@ -393,7 +393,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void testupdateHeightWithHeightIsNegExpectCodeIsNegativeFour()throws Exception{
+    public void testupdateHeightWithHeightIsNegtiveExpectCodeIsNegativeFour()throws Exception{
         mockMvc.perform(MockMvcRequestBuilders.get("/user/updateHeight")
                 .param("userId","1")
                 .param("height","-3")
@@ -406,7 +406,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void testupdateHeightWithDataBaseHaveNotUserExpectCodeIsNegativeFive()throws Exception{
+    public void testupdateHeightWithDataBaseHaveNotUserIdExpectCodeIsNegativeFive()throws Exception{
         mockMvc.perform(MockMvcRequestBuilders.get("/user/updateHeight")
                 .param("userId","99999")
                 .param("height","160")
