@@ -1,17 +1,39 @@
 package com.maamcare.rebmi.service.impl;
 
 
+import com.maamcare.rebmi.dao.UserMapper;
+import com.maamcare.rebmi.dao.WeightRecordMapper;
+import com.maamcare.rebmi.exception.MyException;
+import com.maamcare.rebmi.po.User;
 import com.maamcare.rebmi.po.WeightRecord;
 import com.maamcare.rebmi.service.RemindService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
 @Service
 public class RemindServiceImpl implements RemindService {
 
-    @Override
+    @Autowired
+    WeightRecordMapper weightRecordMapper;
+    @Autowired
+    UserMapper userMapper;
 
+    @Override
     public WeightRecord getWeightByUserIdAndDate(Integer userId, String anyDate) {
-        return null;
+
+
+        User user  =  userMapper.getUserByUserId(userId);
+        if (user == null)
+        {
+           throw new  MyException(-5,"用户不存在");
+        }
+        WeightRecord weightRecord = weightRecordMapper.getWeightByUserIdAndDate(userId,anyDate);
+
+     if (weightRecord == null)
+     {
+         throw new MyException(-6,"查询体重记录信息失败");
+     }
+        return weightRecord;
     }
 }

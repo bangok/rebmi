@@ -79,9 +79,10 @@ public class UserConroller {
         User user = userService.getUserInfoByUserId(userId);
         Map resData = new HashMap();
         resData.put("username",user.getUsername());
-        resData.put("password",user.getPassword());
+        resData.put("height",user.getHeight());
         return Result.success(resData);
     }
+
 
     @GetMapping("/updateHeight")
     public Result updateHeight(Integer userId,Integer height){

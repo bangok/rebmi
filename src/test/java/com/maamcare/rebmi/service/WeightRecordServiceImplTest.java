@@ -66,10 +66,8 @@ public class WeightRecordServiceImplTest {
         Integer userId = 1;
         Integer weight = 600;
         String addDate = "2019-10-20";
-        WeightRecord weightRecord;
-        weightRecord =  weightRecordService.addWeightRecord(userId, weight, addDate);
-        Assertions.assertThat(weightRecord).isNotNull();
-        Assertions.assertThat(weightRecord.userId).isEqualTo(1);
+      boolean isSuccess = weightRecordService.addWeightRecord(userId, weight, addDate);
+        Assertions.assertThat(isSuccess).isTrue();
 
     }
 
@@ -78,9 +76,9 @@ public class WeightRecordServiceImplTest {
         Integer userId = 1;
         Integer weight = 600;
         String addDate = "2019-10-20";
-        WeightRecord weightRecord;
+        boolean isSuccess = true;
         try {
-            weightRecord =  weightRecordService.addWeightRecord(userId, weight, addDate);
+            isSuccess = weightRecordService.addWeightRecord(userId, weight, addDate);
             Assertions.fail("error");
         }catch (MyException e){
             Assertions.assertThat(e.getCode()).isEqualTo(-4);
@@ -93,9 +91,11 @@ public class WeightRecordServiceImplTest {
         Integer userId = 1;
         Integer weight = 600;
         String addDate = "2019-10-20";
-        WeightRecord weightRecord;
+        WeightRecord weightRecord = new WeightRecord();
+
+        boolean isSuccess = true;
         try {
-            weightRecord =  weightRecordService.addWeightRecord(userId, weight, addDate);
+            isSuccess = weightRecordService.addWeightRecord(userId, weight, addDate);
             Assertions.fail("error");
         }catch (MyException e){
             Assertions.assertThat(e.getCode()).isEqualTo(-7);
@@ -105,21 +105,22 @@ public class WeightRecordServiceImplTest {
 
 
     @Test
-    public void TestUpdateWeightRecordExpectSuccess() {
+    public void TestUpdateWeightRecordByRecordIdExpectSuccess() {
         Integer recordId = 1;
         Integer weight = 600;
-        WeightRecord weightRecord = weightRecordService.updateWeightRecord(recordId, weight);
-        Assertions.assertThat(weightRecord).isNotNull();
-        Assertions.assertThat(weightRecord.getWeight()).isEqualTo(600);
+
+        boolean isSuccess = weightRecordService.updateWeightRecordByRecordId(recordId, weight);
+        Assertions.assertThat(isSuccess).isTrue();
     }
 
     @Test
-    public void TestUpdateWeightRecordWithRecordNothingnessExpectError() {
+    public void TestUpdateWeightRecordByRecordIdWithRecordNothingnessExpectError() {
         Integer recordId = 1000;
         Integer weight = 600;
-        WeightRecord weightRecord;
+        boolean isSuccess =true;
+
         try {
-            weightRecord= weightRecordService.updateWeightRecord(recordId, weight);
+        isSuccess = weightRecordService.updateWeightRecordByRecordId(recordId, weight);
             Assertions.fail("error");
         }catch (MyException e){
             Assertions.assertThat(e.getCode()).isEqualTo(-3);
@@ -127,12 +128,13 @@ public class WeightRecordServiceImplTest {
     }
 
     @Test
-    public void TestUpdateWeightRecordExpectError() {
+    public void TestUpdateWeightRecordByRecordIdExpectError() {
         Integer recordId = 1000;
         Integer weight = 600;
-        WeightRecord weightRecord;
+        boolean isSuccess =true;
+
         try {
-            weightRecord= weightRecordService.updateWeightRecord(recordId, weight);
+            isSuccess = weightRecordService.updateWeightRecordByRecordId(recordId, weight);
             Assertions.fail("error");
         }catch (MyException e){
           Assertions.assertThat(e.getCode()).isEqualTo(-6);

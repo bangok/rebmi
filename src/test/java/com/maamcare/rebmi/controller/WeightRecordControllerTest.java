@@ -36,10 +36,12 @@ public class WeightRecordControllerTest {
                 .param("userId","1")
                 .param("startDate","2019-10-22")
                 .param("endDate","2019-10-23")
+                .contentType("application/json;charset=UTF-8") //数据的格式
+                .accept("application/json;charset=UTF-8")
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
                 .andExpect(jsonPath("$.status").value(1))
-                .andExpect(jsonPath("$..data.length()").value(2));
+                .andExpect(jsonPath("$..data[0].userId").value(1));
 
     }
     @Test
@@ -48,6 +50,8 @@ public class WeightRecordControllerTest {
                 .param("userId","")
                 .param("startDate","2019-10-22")
                 .param("endDate","2019-10-23")
+                .contentType("application/json;charset=UTF-8") //数据的格式
+                .accept("application/json;charset=UTF-8")
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
                 .andExpect(jsonPath("$.status").value(0))
@@ -60,6 +64,8 @@ public class WeightRecordControllerTest {
                 .param("userId","-1")
                 .param("startDate","2019-10-22")
                 .param("endDate","2019-10-23")
+                .contentType("application/json;charset=UTF-8") //数据的格式
+                .accept("application/json;charset=UTF-8")
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
                 .andExpect(jsonPath("$.status").value(0))
@@ -72,6 +78,8 @@ public class WeightRecordControllerTest {
                 .param("userId","1")
                 .param("startDate","")
                 .param("endDate","2019-10-23")
+                .contentType("application/json;charset=UTF-8") //数据的格式
+                .accept("application/json;charset=UTF-8")
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
                 .andExpect(jsonPath("$.status").value(0))
@@ -84,6 +92,8 @@ public class WeightRecordControllerTest {
                 .param("userId","1")
                 .param("startDate","2019-10-22")
                 .param("endDate","")
+                .contentType("application/json;charset=UTF-8") //数据的格式
+                .accept("application/json;charset=UTF-8")
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
                 .andExpect(jsonPath("$.status").value(0))
@@ -96,6 +106,8 @@ public class WeightRecordControllerTest {
                 .param("userId","1")
                 .param("startDate","2019-10-23")
                 .param("endDate","2019-10-22")
+                .contentType("application/json;charset=UTF-8") //数据的格式
+                .accept("application/json;charset=UTF-8")
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
                 .andExpect(jsonPath("$.status").value(0))
@@ -107,7 +119,9 @@ public class WeightRecordControllerTest {
         mockMvc.perform(MockMvcRequestBuilders.get("/weightRecord/GetWeightListByTimeSoltAndUserId") //请求的url,请求的方法是get
                 .param("userId","1")
                 .param("startDate","2019-10-23")
-                .param("endDate","2019-10-31")
+                .param("endDate","2019-11-31")
+                .contentType("application/json;charset=UTF-8") //数据的格式
+                .accept("application/json;charset=UTF-8")
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
                 .andExpect(jsonPath("$.status").value(0))
@@ -118,9 +132,10 @@ public class WeightRecordControllerTest {
     public void TestGetWeightListByTimeSoltAndUserIdWithStartDateGreaterThanCurrentDateExpectError() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/weightRecord/GetWeightListByTimeSoltAndUserId") //请求的url,请求的方法是get
                 .param("userId","1")
-                .param("startDate","2019-10-31")
-                .param("endDate","2019-11-1")
-
+                .param("startDate","2019-11-25")
+                .param("endDate","2019-11-28")
+                .contentType("application/json;charset=UTF-8") //数据的格式
+                .accept("application/json;charset=UTF-8")
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
                 .andExpect(jsonPath("$.status").value(0))
@@ -134,6 +149,8 @@ public class WeightRecordControllerTest {
                 .param("userId","1")
                 .param("weight","600")
                 .param("addDate","2019-10-23")
+                .contentType("application/json;charset=UTF-8") //数据的格式
+                .accept("application/json;charset=UTF-8")
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
                 .andExpect(jsonPath("$.status").value(1));
@@ -145,6 +162,8 @@ public class WeightRecordControllerTest {
                 .param("userId","")
                 .param("weight","600")
                 .param("addDate","2019-10-23")
+                .contentType("application/json;charset=UTF-8") //数据的格式
+                .accept("application/json;charset=UTF-8")
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
                 .andExpect(jsonPath("$.status").value(0))
@@ -157,6 +176,8 @@ public class WeightRecordControllerTest {
                 .param("userId","-1")
                 .param("weight","600")
                 .param("addDate","2019-10-23")
+                .contentType("application/json;charset=UTF-8") //数据的格式
+                .accept("application/json;charset=UTF-8")
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
                 .andExpect(jsonPath("$.status").value(0))
@@ -169,6 +190,8 @@ public class WeightRecordControllerTest {
                 .param("userId","1")
                 .param("weight","600")
                 .param("addDate","")
+                .contentType("application/json;charset=UTF-8") //数据的格式
+                .accept("application/json;charset=UTF-8")
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
                 .andExpect(jsonPath("$.status").value(0))
@@ -180,7 +203,9 @@ public class WeightRecordControllerTest {
         mockMvc.perform(MockMvcRequestBuilders.get("/weightRecord/addWeightRecord") //请求的url,请求的方法是get
                 .param("userId","1")
                 .param("weight","600")
-                .param("addDate","2019-10-31")
+                .param("addDate","2019-11-31")
+                .contentType("application/json;charset=UTF-8") //数据的格式
+                .accept("application/json;charset=UTF-8")
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
                 .andExpect(jsonPath("$.status").value(0))
@@ -193,6 +218,8 @@ public class WeightRecordControllerTest {
                 .param("userId","1")
                 .param("weight","")
                 .param("addDate","2019-10-30")
+                .contentType("application/json;charset=UTF-8") //数据的格式
+                .accept("application/json;charset=UTF-8")
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
                 .andExpect(jsonPath("$.status").value(0))
@@ -205,6 +232,8 @@ public class WeightRecordControllerTest {
                 .param("userId","1")
                 .param("weight","-60")
                 .param("addDate","2019-10-30")
+                .contentType("application/json;charset=UTF-8") //数据的格式
+                .accept("application/json;charset=UTF-8")
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
                 .andExpect(jsonPath("$.status").value(0))
@@ -213,21 +242,24 @@ public class WeightRecordControllerTest {
     }
     //修改体重记录
     @Test
-    public void TestUpdateWeightRecordExpectSuccess() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/weightRecord/updateWeightRecord") //请求的url,请求的方法是get
+    public void TestUpdateWeightRecordByRecordIdExpectSuccess() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/weightRecord/updateWeightRecordByRecordId") //请求的url,请求的方法是get
                 .param("recordId","1")
                 .param("weight","600")
+                .contentType("application/json;charset=UTF-8") //数据的格式
+                .accept("application/json;charset=UTF-8")
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
-                .andExpect(jsonPath("$.status").value(0))
                 .andExpect(jsonPath("$.status").value(1));
 
     }
     @Test
-    public void TestUpdateWeightRecordWithUserIdEmptyExpectError() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/weightRecord/updateWeightRecord") //请求的url,请求的方法是get
+    public void TestUpdateWeightRecordByRecordIdWithUserIdEmptyExpectError() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/weightRecord/updateWeightRecordByRecordId") //请求的url,请求的方法是get
                 .param("recordId","")
                 .param("weight","600")
+                .contentType("application/json;charset=UTF-8") //数据的格式
+                .accept("application/json;charset=UTF-8")
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
                 .andExpect(jsonPath("$.status").value(0))
@@ -235,10 +267,12 @@ public class WeightRecordControllerTest {
 
     }
     @Test
-    public void TestUpdateWeightRecordWithRecordIdNegativeExpectError() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/weightRecord/updateWeightRecord") //请求的url,请求的方法是get
+    public void TestUpdateWeightRecordByRecordIdWithRecordIdNegativeExpectError() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/weightRecord/updateWeightRecordByRecordId") //请求的url,请求的方法是get
                 .param("recordId","-1")
                 .param("weight","600")
+                .contentType("application/json;charset=UTF-8") //数据的格式
+                .accept("application/json;charset=UTF-8")
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
                 .andExpect(jsonPath("$.status").value(0))
@@ -246,10 +280,12 @@ public class WeightRecordControllerTest {
 
     }
     @Test
-    public void TestUpdateWeightRecordWithWeightEmptyExpectError() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/weightRecord/updateWeightRecord") //请求的url,请求的方法是get
+    public void TestUpdateWeightRecordByRecordIdWithWeightEmptyExpectError() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/weightRecord/updateWeightRecordByRecordId") //请求的url,请求的方法是get
                 .param("recordId","1")
                 .param("weight","")
+                .contentType("application/json;charset=UTF-8") //数据的格式
+                .accept("application/json;charset=UTF-8")
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
                 .andExpect(jsonPath("$.status").value(0))
@@ -257,10 +293,12 @@ public class WeightRecordControllerTest {
 
     }
     @Test
-    public void TestUpdateWeightRecordWithWeightNegativeExpectError() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/weightRecord/updateWeightRecord") //请求的url,请求的方法是get
+    public void TestUpdateWeightRecordByRecordIdWithWeightNegativeExpectError() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/weightRecord/updateWeightRecordByRecordId") //请求的url,请求的方法是get
                 .param("recordId","1")
                 .param("weight","-600")
+                .contentType("application/json;charset=UTF-8") //数据的格式
+                .accept("application/json;charset=UTF-8")
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
                 .andExpect(jsonPath("$.status").value(0))

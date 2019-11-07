@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.maamcare.rebmi.dao.UserMapper">
+<mapper namespace="com.maamcare.rebmi.dao.WeightRecordMapper">
 
     <resultMap id="BaseResultMap" type="com.maamcare.rebmi.po.WeightRecord">
         <result column="id" jdbcType="INTEGER" property="id" />
         <result column="weight" jdbcType="INTEGER" property="weight" />
         <result column="userid" jdbcType="INTEGER" property="userId" />
-        <result column="record_date" jdbcType="Date" property="record_date" />
+        <result column="record_date" jdbcType="DATE" property="record_date" />
     </resultMap>
 
     <select id="GetWeightListByTimeSoltAndUserId" resultMap="BaseResultMap">
@@ -16,5 +16,14 @@
    <select id="getWeightByUserIdAndDate" resultMap="BaseResultMap">
        select * from record where userid = #{userId} and record_date = #{anyDate}
    </select>
-
+    <insert id="addWeightRecord">
+          insert into record (userid,record_date,weight) values(#{userId},#{addDate},#{weight})
+    </insert>
+    <update id="updateWeightRecordByRecordId"  parameterType="Integer">
+         update record SET weight=#{weight}
+         where id=#{recordId}
+    </update>
+    <select id="GetWeightRecordByRecordId" resultMap="BaseResultMap">
+        select * from record where id = #{recordId};
+    </select>
 </mapper>

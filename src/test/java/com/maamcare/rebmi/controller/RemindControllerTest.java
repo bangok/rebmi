@@ -35,6 +35,8 @@ public class RemindControllerTest {
         mockMvc.perform(MockMvcRequestBuilders.get("/remind/getWeightByUserIdAndDate") //请求的url,请求的方法是get
                 .param("userId","1")
                 .param("anyDate","2019-10-22")
+                .contentType("application/json;charset=UTF-8") //数据的格式
+                .accept("application/json;charset=UTF-8")
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
                 .andExpect(jsonPath("$.status").value(1))
@@ -47,6 +49,8 @@ public class RemindControllerTest {
         mockMvc.perform(MockMvcRequestBuilders.get("/remind/getWeightByUserIdAndDate") //请求的url,请求的方法是get
                 .param("userId","")
                 .param("anyDate","2019-10-23")
+                .contentType("application/json;charset=UTF-8") //数据的格式
+                .accept("application/json;charset=UTF-8")
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
                 .andExpect(jsonPath("$.status").value(0))
@@ -58,6 +62,8 @@ public class RemindControllerTest {
         mockMvc.perform(MockMvcRequestBuilders.get("/remind/getWeightByUserIdAndDate") //请求的url,请求的方法是get
                 .param("userId","-1")
                 .param("anyDate","2019-10-23")
+                .contentType("application/json;charset=UTF-8") //数据的格式
+                .accept("application/json;charset=UTF-8")
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
                 .andExpect(jsonPath("$.status").value(0))
@@ -69,6 +75,8 @@ public class RemindControllerTest {
         mockMvc.perform(MockMvcRequestBuilders.get("/remind/getWeightByUserIdAndDate") //请求的url,请求的方法是get
                 .param("userId","1")
                 .param("anyDate","")
+                .contentType("application/json;charset=UTF-8") //数据的格式
+                .accept("application/json;charset=UTF-8")
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
                 .andExpect(jsonPath("$.status").value(0))
@@ -80,6 +88,8 @@ public class RemindControllerTest {
         mockMvc.perform(MockMvcRequestBuilders.get("/remind/getWeightByUserIdAndDate") //请求的url,请求的方法是get
                 .param("userId","1")
                 .param("anyDate","2019-11-15")
+                .contentType("application/json;charset=UTF-8") //数据的格式
+                .accept("application/json;charset=UTF-8")
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
                 .andExpect(jsonPath("$.status").value(0))
