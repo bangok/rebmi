@@ -19,7 +19,7 @@ spring:
   devtools:
     restart:
       # 设置热部署生效配置
-      enabled: true
+      enabled: false
       # 设置热部署需要重启的目录， 添加那个目录的文件需要restart
       additional-paths: src/main/java
       #排除那个目录文件不需要restart
