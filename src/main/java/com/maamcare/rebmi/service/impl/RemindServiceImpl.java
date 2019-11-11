@@ -7,6 +7,7 @@ import com.maamcare.rebmi.exception.MyException;
 import com.maamcare.rebmi.po.User;
 import com.maamcare.rebmi.po.WeightRecord;
 import com.maamcare.rebmi.service.RemindService;
+import com.maamcare.rebmi.vo.common.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,10 +31,6 @@ public class RemindServiceImpl implements RemindService {
         }
         WeightRecord weightRecord = weightRecordMapper.getWeightByUserIdAndDate(userId,anyDate);
 
-     if (weightRecord == null)
-     {
-         throw new MyException(-6,"查询体重记录信息失败");
-     }
         return weightRecord;
     }
 }

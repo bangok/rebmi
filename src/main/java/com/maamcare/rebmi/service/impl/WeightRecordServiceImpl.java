@@ -36,9 +36,8 @@ public class WeightRecordServiceImpl implements WeightRecordService {
     public boolean addWeightRecord(Integer userId, Integer weight, String addDate) {
         User user  =  userMapper.getUserByUserId(userId);
         if (user == null) {
-            throw new MyException(-5, "用户不存在");
+            throw new MyException(-4, "用户不存在");
         }
-        WeightRecord weightRecord = new WeightRecord() ;
         Integer integer = weightRecordMapper.addWeightRecord(userId,weight,addDate);
         boolean isSuccess = true;
         if (integer <= 0)

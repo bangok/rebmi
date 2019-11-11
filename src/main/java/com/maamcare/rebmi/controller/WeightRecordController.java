@@ -7,6 +7,7 @@ import com.maamcare.rebmi.po.WeightRecord;
 import com.maamcare.rebmi.service.WeightRecordService;
 import com.maamcare.rebmi.vo.ErrMap;
 import com.maamcare.rebmi.vo.common.Result;
+import com.maamcare.rebmi.vo.common.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
@@ -24,10 +25,11 @@ public class WeightRecordController {
 
     @GetMapping("/GetWeightListByTimeSoltAndUserId")
     public Result GetWeightListByTimeSoltAndUserId(@RequestParam Integer userId,
-                                                   @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") String startDate,
-                                                   @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") String endDate) {
+                                                   @RequestParam String startDate,
+                                                   @RequestParam String endDate) {
 
-
+        StringUtil.parseStringToDate(startDate);
+        StringUtil.parseStringToDate(endDate);
         if (userId == null) {
             throw new MyException(-1, "用户Id不能为空");
         }
@@ -64,7 +66,8 @@ public class WeightRecordController {
     @GetMapping("/addWeightRecord")
     public Result addWeightRecord(@RequestParam Integer userId,
                                   @RequestParam Integer weight,
-                                  @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") String addDate) {
+                                  @RequestParam String addDate) {
+        StringUtil.parseStringToDate(addDate);
         if (userId == null) {
             throw new MyException(-1, "用户Id不能为空");
         }
