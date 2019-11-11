@@ -1,14 +1,17 @@
 package com.maamcare.rebmi.dao;
 
 import com.maamcare.rebmi.po.WeightRecord;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Date;
 import java.util.List;
-
+@Repository
+@Transactional
 public interface WeightRecordMapper {
     public List<WeightRecord> GetWeightListByTimeSoltAndUserId(Integer userId, String startDate, String endDate);
-    public WeightRecord addWeightRecord(Integer userId, Integer weight,String addDate);
-    public WeightRecord updateWeightRecord(Integer recordId, Integer weight);
-    public WeightRecord getWeightByUserIdAndDate(Integer userId, String AnyDate);
+    public Integer addWeightRecord(Integer userId, Integer weight,String addDate);
+    public Integer updateWeightRecordByRecordId(Integer recordId, Integer weight);
+    public WeightRecord getWeightByUserIdAndDate(Integer userId, String anyDate);
+    public WeightRecord GetWeightRecordByRecordId(Integer recordId);
 
 }

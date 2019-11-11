@@ -10,6 +10,20 @@ spring:
     #    数据库链接地址、数据库名字
     url: jdbc:mysql://localhost:3306/bmi?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
     driver-class-name: com.mysql.cj.jdbc.Driver
+  activemq:
+    broker-url:
+  # 关闭缓存即时更新
+  thymeleaf:
+    cache: true
+  # 设置热部署devtools
+  devtools:
+    restart:
+      # 设置热部署生效配置
+      enabled: false
+      # 设置热部署需要重启的目录， 添加那个目录的文件需要restart
+      additional-paths: src/main/java
+      #排除那个目录文件不需要restart
+     #exclude: static/**,public/**
 
 mybatis:
   mapper-locations: classpath:mapping/*Mapping.xml
@@ -22,3 +36,4 @@ logging:
       maamcare:
         rebmi:
           dao: debug
+

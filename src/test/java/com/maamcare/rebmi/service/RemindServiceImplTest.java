@@ -33,14 +33,14 @@ public class RemindServiceImplTest {
 
     @Test
     public void TestGetWeightByUserIdAndDateWithUserNothingnessExpectError() {
-        Integer userId = 1;
+        Integer userId = 111;
         String anyDate = "2019-10-13";
         try {
             WeightRecord weightRecord = remindService.getWeightByUserIdAndDate(userId, anyDate);
             Assertions.fail("error");
         } catch (MyException ex) {
 
-            Assertions.assertThat(ex.getCode()).isEqualTo(-3);
+            Assertions.assertThat(ex.getCode()).isEqualTo(-5);
 
         }
 
@@ -49,7 +49,7 @@ public class RemindServiceImplTest {
     @Test
     public void TestGetWeightByUserIdAndDateExpectError() {
         Integer userId = 1;
-        String anyDate = "2019-10-13";
+        String anyDate = "2019-11-13";
         WeightRecord weightRecord;
         try {
             weightRecord = remindService.getWeightByUserIdAndDate(userId, anyDate);
