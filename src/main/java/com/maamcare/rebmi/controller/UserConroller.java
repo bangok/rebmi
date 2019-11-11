@@ -9,6 +9,7 @@ import com.maamcare.rebmi.vo.ErrMap;
 import com.maamcare.rebmi.vo.UserLoginInfoVo;
 import com.maamcare.rebmi.vo.UserRegisterInfoVo;
 import com.maamcare.rebmi.vo.common.Result;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
