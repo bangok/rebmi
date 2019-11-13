@@ -12,6 +12,9 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
   activemq:
     broker-url:
+  http:
+    encoding:
+      force: true
   # 关闭缓存即时更新
   thymeleaf:
     cache: true
