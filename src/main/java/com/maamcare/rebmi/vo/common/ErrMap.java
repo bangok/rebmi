@@ -1,4 +1,4 @@
-package com.maamcare.rebmi.vo;
+package com.maamcare.rebmi.vo.common;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

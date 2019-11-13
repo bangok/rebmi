@@ -2,14 +2,11 @@ package com.maamcare.rebmi.component;
 
 import com.maamcare.rebmi.annotation.Access;
 import com.maamcare.rebmi.exception.MyException;
-import com.maamcare.rebmi.vo.ErrMap;
-import com.maamcare.rebmi.vo.Result;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -19,7 +16,7 @@ import java.lang.reflect.Method;
 
 /**
  * 全局拦截器
- *
+ *  使用拦截器方式完成权鉴
  * */
 @Component
 public class GlobalHandlerInterceptor implements HandlerInterceptor {

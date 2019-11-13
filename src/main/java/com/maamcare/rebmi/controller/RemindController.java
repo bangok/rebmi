@@ -1,10 +1,8 @@
 package com.maamcare.rebmi.controller;
 
-import com.alibaba.fastjson.JSONObject;
 import com.maamcare.rebmi.exception.MyException;
 import com.maamcare.rebmi.po.WeightRecord;
 import com.maamcare.rebmi.service.RemindService;
-import com.maamcare.rebmi.vo.ErrMap;
 import com.maamcare.rebmi.vo.common.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;

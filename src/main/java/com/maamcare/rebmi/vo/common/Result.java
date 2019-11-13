@@ -1,5 +1,4 @@
 package com.maamcare.rebmi.vo.common;
-import com.maamcare.rebmi.vo.ErrMap;
 
 public class Result {
     public Integer status;

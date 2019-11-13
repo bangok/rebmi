@@ -5,15 +5,13 @@ package com.maamcare.rebmi.controller;
 import com.maamcare.rebmi.annotation.Access;
 import com.maamcare.rebmi.po.User;
 import com.maamcare.rebmi.service.UserService;
-import com.maamcare.rebmi.vo.ErrMap;
+import com.maamcare.rebmi.vo.common.ErrMap;
 import com.maamcare.rebmi.vo.UserLoginInfoVo;
 import com.maamcare.rebmi.vo.UserRegisterInfoVo;
 import com.maamcare.rebmi.vo.common.Result;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
@@ -29,7 +27,7 @@ public class UserConroller {
 
     @GetMapping("/test")
     @Access(authorities = {"LOGIN"})
-    public Result test(){
+    public Result test(HttpSession session,Integer id,User user,String name){
         return Result.success("权限控制");
     }
 
@@ -48,7 +46,7 @@ public class UserConroller {
         return Result.success(resData);
     }
 
-    @GetMapping("/login")
+    @PostMapping("/login")
     public Result login(@Validated UserLoginInfoVo userLoginInfoVo,
                         HttpSession session
                            ){//HttpSession session
