@@ -1,33 +1,32 @@
 package com.maamcare.rebmi.controller.user;
 
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
-import java.util.Random;
+
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
-@RunWith(SpringRunner.class)
 @SpringBootTest
 @WebAppConfiguration
+@DisplayName("login(String username,String password) 用户登录(用户名，用户密码)")
 public class LoginTest {
     @Autowired
     private WebApplicationContext webApplicationContext;
 
 
     private MockMvc mockMvc;
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         //MockMvcBuilders.webAppContextSetup(WebApplicationContext context)：指定WebApplicationContext，将会从该上下文获取相应的控制器并得到相应的MockMvc；
         mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();//建议使用这种
@@ -39,6 +38,7 @@ public class LoginTest {
      * */
 
     @Test
+    @DisplayName("参数合法(username:zcf,password:123456)，期望成功")
     public void testLoginWithNormalExpectSuccess() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/user/login")
                 .param("username","zcf")
@@ -51,6 +51,7 @@ public class LoginTest {
     }
 
     @Test
+    @DisplayName("用户名为null，期望失败，错误码：-1")
     public void testLoginWithUsernameIsNullExpectCodeIsNegativeOne() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/user/login")
                 .param("password","123456")
@@ -63,6 +64,7 @@ public class LoginTest {
     }
 
     @Test
+    @DisplayName("用户名为长度大于8，期望失败，错误码：-2")
     public void testLoginWithUsernameIsMoreThanEightExpectCodeIsNegativeTwo() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/user/login")
                 .param("username","ddddddddd")
@@ -76,6 +78,7 @@ public class LoginTest {
     }
 
     @Test
+    @DisplayName("用户名为长度小于3，期望失败，错误码：-3")
     public void testLoginWithUsernameLenghtIsLessThanThreeExpectCodeIsNegativeThree() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/user/login")
                 .param("username","d")
@@ -89,6 +92,7 @@ public class LoginTest {
     }
 
     @Test
+    @DisplayName("用户名包含非法字符，期望失败，错误码：-4")
     public void testLoginWithUsernameHaveIllegalCharacterExpectCodeIsNegativeFour() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/user/login")
                 .param("username","d@dd")
@@ -102,6 +106,7 @@ public class LoginTest {
     }
 
     @Test
+    @DisplayName("密码为null，期望失败，错误码：-5")
     public void testLoginWithPasswordIsNullExpectCodeIsNegativeFive() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/user/login")
                 .param("username","ddd")
@@ -114,6 +119,7 @@ public class LoginTest {
     }
 
     @Test
+    @DisplayName("密码长度不等于6，期望失败，错误码：-6")
     public void testLoginWithPasswordLenghtIsNotSixExpectCodeIsNegativeSix() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/user/login")
                 .param("username","zcf")
@@ -127,6 +133,7 @@ public class LoginTest {
     }
 
     @Test
+    @DisplayName("密码包含非法字符，期望失败，错误码：-7")
     public void testLoginWithPasswordHaveIllegalCharacterExpectCodeIsNegativeSeven() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/user/login")
                 .param("username","zcf")

@@ -1,12 +1,11 @@
 package com.maamcare.rebmi.controller.user;
 
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -17,16 +16,16 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
-@RunWith(SpringRunner.class)
 @SpringBootTest
 @WebAppConfiguration
+@DisplayName("updateHeight(Integer userId,Integer height) 修改身高(用户ID，身高)")
 public class UpdateHeightTest {
     @Autowired
     private WebApplicationContext webApplicationContext;
 
 
     private MockMvc mockMvc;
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         //MockMvcBuilders.webAppContextSetup(WebApplicationContext context)：指定WebApplicationContext，将会从该上下文获取相应的控制器并得到相应的MockMvc；
         mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();//建议使用这种
@@ -37,6 +36,7 @@ public class UpdateHeightTest {
      * 用户修改身高
      * */
     @Test
+    @DisplayName("参数正确，期望成功")
     public void testupdateHeightWithNormalExpectSuccess()throws Exception{
         mockMvc.perform(MockMvcRequestBuilders.get("/user/updateHeight")
                 .param("userId","1")
@@ -49,9 +49,9 @@ public class UpdateHeightTest {
     }
 
     @Test
+    @DisplayName("用户ID为null，期望失败，错误码：-1")
     public void testupdateHeightWitUserIdIsNullExpectCodeIsNegativeOne()throws Exception{
         mockMvc.perform(MockMvcRequestBuilders.get("/user/updateHeight")
-                .param("userId","")
                 .param("height","190")
                 .contentType("application/json;charset=UTF-8") //数据的格式
                 .accept("application/json;charset=UTF-8")
@@ -62,6 +62,7 @@ public class UpdateHeightTest {
     }
 
     @Test
+    @DisplayName("用户ID为负，期望失败，错误码：-2")
     public void testupdateHeightWithUserIdIsNegtiveExpectCodeIsNegativeTwo()throws Exception{
         mockMvc.perform(MockMvcRequestBuilders.get("/user/updateHeight")
                 .param("userId","-1")
@@ -75,6 +76,7 @@ public class UpdateHeightTest {
     }
 
     @Test
+    @DisplayName("身高为null，期望失败，错误码：-3")
     public void testupdateHeightWithHeightIsNullExpectCodeIsNegativeThree()throws Exception{
         mockMvc.perform(MockMvcRequestBuilders.get("/user/updateHeight")
                 .param("userId","1")
@@ -88,6 +90,7 @@ public class UpdateHeightTest {
     }
 
     @Test
+    @DisplayName("身高为负，期望失败，错误码：-4")
     public void testupdateHeightWithHeightIsNegtiveExpectCodeIsNegativeFour()throws Exception{
         mockMvc.perform(MockMvcRequestBuilders.get("/user/updateHeight")
                 .param("userId","1")
@@ -101,6 +104,7 @@ public class UpdateHeightTest {
     }
 
     @Test
+    @DisplayName("用户ID不存在，期望失败，错误码：-5")
     public void testupdateHeightWithDataBaseHaveNotUserIdExpectCodeIsNegativeFive()throws Exception{
         mockMvc.perform(MockMvcRequestBuilders.get("/user/updateHeight")
                 .param("userId","99999")

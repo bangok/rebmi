@@ -1,33 +1,34 @@
 package com.maamcare.rebmi.controller.user;
 
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
+
 import java.util.Random;
+
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
-@RunWith(SpringRunner.class)
 @SpringBootTest
 @WebAppConfiguration
+@DisplayName("register(String username,String password,Integer height) 用户登录(用户名，用户密码，身高)")
 public class RegisterTest {
     @Autowired
     private WebApplicationContext webApplicationContext;
 
 
     private MockMvc mockMvc;
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         //MockMvcBuilders.webAppContextSetup(WebApplicationContext context)：指定WebApplicationContext，将会从该上下文获取相应的控制器并得到相应的MockMvc；
         mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();//建议使用这种
@@ -39,6 +40,7 @@ public class RegisterTest {
      * */
 
     @Test
+    @DisplayName("参数正确，期望成功")
     public void testRegisterWithNormalExpectSuccess() throws Exception {
         Random rm = new Random();
         int radomInt = rm.nextInt(1000)+1000;
@@ -56,6 +58,7 @@ public class RegisterTest {
     }
 
     @Test
+    @DisplayName("用户名为null，期望失败，错误码：-1")
     public void testRegisterWithUsernameIsNullExpectCodeIsNegativeOne() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/user/register")
                 .param("password","123456")
@@ -69,6 +72,7 @@ public class RegisterTest {
     }
 
     @Test
+    @DisplayName("用户名长度大于8，期望失败，错误码：-2")
     public void testRegisterWithUsernameLenghtThanEightExpectCodeIsNegativeTwo() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/user/register")
                 .param("username","asdfghjkl")
@@ -83,6 +87,7 @@ public class RegisterTest {
     }
 
     @Test
+    @DisplayName("用户名长度小于3，期望失败，错误码：-3")
     public void testRegisterWithUsernameLenghtLessThanThreeExpectCodeIsNegativeThree() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/user/register")
                 .param("username","a")
@@ -97,6 +102,7 @@ public class RegisterTest {
     }
 
     @Test
+    @DisplayName("用户名包含非法字符，期望失败，错误码：-4")
     public void testRegisterWithUsernameIsHaveIllegalCharacterExpectCodeIsNegativeFour() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/user/register")
                 .param("username","a@163d")
@@ -111,6 +117,7 @@ public class RegisterTest {
     }
 
     @Test
+    @DisplayName("密码为null，期望失败，错误码：-5")
     public void testRegisterWithPasswordIsNullExpectCodeIsNegativeFive() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/user/register")
                 .param("username","zcf")
@@ -124,6 +131,7 @@ public class RegisterTest {
     }
 
     @Test
+    @DisplayName("密码长度不等于6，期望失败，错误码：-6")
     public void testRegisterWithPasswordLenghtIsNotSixExpectCodeIsNegativeSix() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/user/register")
                 .param("username","zcf")
@@ -138,6 +146,7 @@ public class RegisterTest {
     }
 
     @Test
+    @DisplayName("密码包含非法字符，期望失败，错误码：-7")
     public void testRegisterWithPasswordHaveIllegalCharacterExpectCodeIsNegativeSeven() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/user/register")
                 .param("username","zcf")
@@ -152,11 +161,11 @@ public class RegisterTest {
     }
 
     @Test
+    @DisplayName("身高为null，期望失败，错误码：-8")
     public void testRegisterWithHeightIsNullExpectCodeIsNegativeEight() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/user/register")
                 .param("username","zcf")
                 .param("password","dddddd")
-                .param("height","")
                 .contentType("application/json;charset=UTF-8") //数据的格式
                 .accept("application/json;charset=UTF-8")
         ).andExpect(status().isOk())  //返回的状态是200
@@ -166,6 +175,7 @@ public class RegisterTest {
     }
 
     @Test
+    @DisplayName("身高为负，期望失败，错误码：-9")
     public void testRegisterWithHeightIsNegativeExpectCodeIsNegativeNine() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/user/register")
                 .param("username","zcf")

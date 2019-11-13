@@ -5,16 +5,16 @@ import com.maamcare.rebmi.exception.MyException;
 import com.maamcare.rebmi.po.User;
 import com.maamcare.rebmi.service.UserService;
 import org.assertj.core.api.Assertions;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Random;
 
-@RunWith(SpringRunner.class)
+
 @SpringBootTest
+@DisplayName("register(User user) 用户注册(用户对象)")
 public class RegisterTest {
 
     @Autowired
@@ -24,13 +24,14 @@ public class RegisterTest {
      * 用户注册
      * */
     @Test
+    @DisplayName("参数正确，期望成功")
     public void testRegisterWithNomalExpectSuccess(){
         //组装入参数据
         Random rm = new Random();
         User user = new User();
         int radomInt = rm.nextInt(1000)+1000;
         String s = String.valueOf(radomInt);
-        user.setUsername("a"+s);
+        user.setUsername("test"+s);
         user.setHeight(180);
         user.setPassword("123456");
         //准备异常和接收参数
@@ -48,6 +49,7 @@ public class RegisterTest {
     }
 
     @Test
+    @DisplayName("用户名已存在，期望失败，错误码：-10")
     public void testRegisterWithUsernameRepeatExpectExpectFail(){
         User user = new User();
         user.setUsername("zcf");

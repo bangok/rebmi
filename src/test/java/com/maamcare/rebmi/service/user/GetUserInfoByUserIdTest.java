@@ -5,14 +5,14 @@ import com.maamcare.rebmi.exception.MyException;
 import com.maamcare.rebmi.po.User;
 import com.maamcare.rebmi.service.UserService;
 import org.assertj.core.api.Assertions;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
-@RunWith(SpringRunner.class)
+
 @SpringBootTest
+@DisplayName("getUserInfoByUserId(Integer userId) 获取用户信息(用户名ID)")
 public class GetUserInfoByUserIdTest {
 
     @Autowired
@@ -21,6 +21,7 @@ public class GetUserInfoByUserIdTest {
      * 获取用户信息
      * */
     @Test
+    @DisplayName("参数正确，期望成功")
     public void testGetUserInfoByUserIdWithUserIdNormalExpectSuccess(){
         Integer userId = 1;
         MyException e=new MyException();
@@ -34,6 +35,7 @@ public class GetUserInfoByUserIdTest {
     }
 
     @Test
+    @DisplayName("用户不存在，期望失败，错误码：-3")
     public void testGetUserInfoByUserIdWithUserIdIsNonExistentdExpectCodeIsNegativeThree(){
         Integer userId = 999;
         MyException e=new MyException();

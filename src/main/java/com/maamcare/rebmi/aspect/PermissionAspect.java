@@ -24,7 +24,6 @@ public class PermissionAspect {
     @Pointcut(POINT_CUT)
     public void pointCut(){}
 
-    
     @Before(value = "pointCut()")
     public void before(JoinPoint joinPoint){
         //通过以下方式获取Request等信息
