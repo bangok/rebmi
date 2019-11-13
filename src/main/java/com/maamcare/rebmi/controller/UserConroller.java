@@ -96,7 +96,7 @@ public class UserConroller {
             err.setMsg("用户id为负");
             return Result.fail(err);
         }
-        if(height==null){
+        if(height==null||height.equals("")){
             err.setCode(-3);
             err.setMsg("用户身高为空");
             return Result.fail(err);

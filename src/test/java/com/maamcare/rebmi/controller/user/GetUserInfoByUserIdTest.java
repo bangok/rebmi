@@ -19,7 +19,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @WebAppConfiguration
-@DisplayName("getUserInfoByUserId(Integer userId) 获取用户信息(用户名ID)")
+@DisplayName("getUserInfoByUserId(Integer userId) 获取用户信息(用户名ID) controller")
 public class GetUserInfoByUserIdTest {
     @Autowired
     private WebApplicationContext webApplicationContext;

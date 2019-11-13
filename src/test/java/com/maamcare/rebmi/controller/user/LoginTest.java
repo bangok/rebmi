@@ -19,7 +19,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @WebAppConfiguration
-@DisplayName("login(String username,String password) 用户登录(用户名，用户密码)")
+@DisplayName("login(String username,String password) 用户登录(用户名，用户密码) controller")
 public class LoginTest {
     @Autowired
     private WebApplicationContext webApplicationContext;
@@ -92,7 +92,7 @@ public class LoginTest {
     }
 
     @Test
-    @DisplayName("用户名包含非法字符，期望失败，错误码：-4")
+    @DisplayName("用户名包含非法字符（非英文、数字组合），期望失败，错误码：-4")
     public void testLoginWithUsernameHaveIllegalCharacterExpectCodeIsNegativeFour() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/user/login")
                 .param("username","d@dd")
@@ -133,7 +133,7 @@ public class LoginTest {
     }
 
     @Test
-    @DisplayName("密码包含非法字符，期望失败，错误码：-7")
+    @DisplayName("密码包含非法字符（非英文、数字组合），期望失败，错误码：-7")
     public void testLoginWithPasswordHaveIllegalCharacterExpectCodeIsNegativeSeven() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/user/login")
                 .param("username","zcf")

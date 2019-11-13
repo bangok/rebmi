@@ -13,7 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 
 @SpringBootTest
-@DisplayName("updateHeight(Integer userId,Integer height) 修改身高(用户ID，身高)")
+@DisplayName("updateHeight(Integer userId,Integer height) 修改身高(用户ID，身高) service")
 public class UpdateHeightTest {
 
     @Autowired

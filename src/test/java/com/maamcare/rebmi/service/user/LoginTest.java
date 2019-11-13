@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-@DisplayName("login(String username,String password) 用户登录(用户名，用户密码)")
+@DisplayName("login(String username,String password) 用户登录(用户名，用户密码) service")
 public class LoginTest {
 
     @Autowired

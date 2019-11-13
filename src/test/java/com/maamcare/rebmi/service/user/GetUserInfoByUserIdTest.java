@@ -12,7 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 
 @SpringBootTest
-@DisplayName("getUserInfoByUserId(Integer userId) 获取用户信息(用户名ID)")
+@DisplayName("getUserInfoByUserId(Integer userId) 获取用户信息(用户名ID) service")
 public class GetUserInfoByUserIdTest {
 
     @Autowired

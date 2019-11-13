@@ -18,7 +18,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @WebAppConfiguration
-@DisplayName("updateHeight(Integer userId,Integer height) 修改身高(用户ID，身高)")
+@DisplayName("updateHeight(Integer userId,Integer height) 修改身高(用户ID，身高) controller")
 public class UpdateHeightTest {
     @Autowired
     private WebApplicationContext webApplicationContext;
