@@ -146,4 +146,35 @@ public class LoginTest {
                 .andExpect(jsonPath("$.err.code").value(-7));
     }
 
+    /**
+     * service层的错误
+     * */
+    @Test
+    @DisplayName("用户名不存在，期望失败，错误码：-8")
+    public void testLoginWithUsernameNotHaveExpectFail() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/user/login")
+                .param("username","zcf999")
+                .param("password","123456")
+                .contentType("application/json;charset=UTF-8") //数据的格式
+                .accept("application/json;charset=UTF-8")
+        ).andExpect(status().isOk())  //返回的状态是200
+                .andDo(print()) //打印出请求和相应的内容
+                .andExpect(jsonPath("$.status").value(0))
+                .andExpect(jsonPath("$.err.code").value(-8));
+    }
+
+    @Test
+    @DisplayName("密码错误，期望失败，错误码：-9")
+    public void testLoginWithPasswordErrorExpectFail() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/user/login")
+                .param("username","zcf")
+                .param("password","12345d")
+                .contentType("application/json;charset=UTF-8") //数据的格式
+                .accept("application/json;charset=UTF-8")
+        ).andExpect(status().isOk())  //返回的状态是200
+                .andDo(print()) //打印出请求和相应的内容
+                .andExpect(jsonPath("$.status").value(0))
+                .andExpect(jsonPath("$.err.code").value(-9));
+    }
+
 }

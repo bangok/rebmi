@@ -189,5 +189,24 @@ public class RegisterTest {
                 .andExpect(jsonPath("$.err.code").value(-9));
     }
 
+    /**
+     * service层的错误
+     * */
+
+    @Test
+    @DisplayName("用户名已存在，期望失败，错误码：-10")
+    public void testRegisterWithUsernameHaveExistExpectError() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/user/register")
+                .param("username","zcf")
+                .param("password","123456")
+                .param("height","185")
+                .contentType("application/json;charset=UTF-8") //数据的格式
+                .accept("application/json;charset=UTF-8")
+        ).andExpect(status().isOk())  //返回的状态是200
+                .andDo(print()) //打印出请求和相应的内容
+                .andExpect(jsonPath("$.status").value(0))
+                .andExpect(jsonPath("$.err.code").value(-10));
+    }
+
 
 }
