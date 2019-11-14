@@ -67,7 +67,7 @@ public class LoginTest {
     @DisplayName("用户名为长度大于8，期望失败，错误码：-2")
     public void testLoginWithUsernameIsMoreThanEightExpectCodeIsNegativeTwo() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/user/login")
-                .param("username","ddddddddd")
+                .param("username","dddddddddd")
                 .param("password","123456")
                 .contentType("application/json;charset=UTF-8") //数据的格式
                 .accept("application/json;charset=UTF-8")
