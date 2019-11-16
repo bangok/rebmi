@@ -25,7 +25,7 @@ public class RegisterTest {
      * */
     @Test
     @DisplayName("参数正确，期望成功")
-    public void testRegisterWithNomalExpectSuccess(){
+    public void test_Register_WithNomal_ExpectSuccess(){
         //组装入参数据
         Random rm = new Random();
         User user = new User();
@@ -50,7 +50,7 @@ public class RegisterTest {
 
     @Test
     @DisplayName("用户名已存在，期望失败，错误码：-10")
-    public void testRegisterWithUsernameRepeatExpectExpectFail(){
+    public void test_Registe_rWithUsernameRepeat_ExpectExpectFail(){
         User user = new User();
         user.setUsername("zcf");
         user.setHeight(180);

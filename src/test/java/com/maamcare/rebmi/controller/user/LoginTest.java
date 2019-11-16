@@ -39,7 +39,7 @@ public class LoginTest {
 
     @Test
     @DisplayName("参数合法(username:zcf,password:123456)，期望成功")
-    public void testLoginWithNormalExpectSuccess() throws Exception {
+    public void test_Login_WithNormal_ExpectSuccess() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/user/login")
                 .param("username","zcf")
                 .param("password","123456")
@@ -52,7 +52,7 @@ public class LoginTest {
 
     @Test
     @DisplayName("用户名为null，期望失败，错误码：-1")
-    public void testLoginWithUsernameIsNullExpectCodeIsNegativeOne() throws Exception {
+    public void test_Login_WithUsernameIsNull_ExpectCodeIsNegativeOne() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/user/login")
                 .param("password","123456")
                 .contentType("application/json;charset=UTF-8") //数据的格式
@@ -65,7 +65,7 @@ public class LoginTest {
 
     @Test
     @DisplayName("用户名为长度大于8，期望失败，错误码：-2")
-    public void testLoginWithUsernameIsMoreThanEightExpectCodeIsNegativeTwo() throws Exception {
+    public void test_Login_WithUsernameIsMoreThanEight_ExpectCodeIsNegativeTwo() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/user/login")
                 .param("username","dddddddddd")
                 .param("password","123456")
@@ -79,7 +79,7 @@ public class LoginTest {
 
     @Test
     @DisplayName("用户名为长度小于3，期望失败，错误码：-3")
-    public void testLoginWithUsernameLenghtIsLessThanThreeExpectCodeIsNegativeThree() throws Exception {
+    public void test_Login_WithUsernameLenghtIsLessThanThree_ExpectCodeIsNegativeThree() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/user/login")
                 .param("username","d")
                 .param("password","123456")
@@ -93,7 +93,7 @@ public class LoginTest {
 
     @Test
     @DisplayName("用户名包含非法字符（非英文、数字组合），期望失败，错误码：-4")
-    public void testLoginWithUsernameHaveIllegalCharacterExpectCodeIsNegativeFour() throws Exception {
+    public void test_Login_WithUsernameHaveIllegalCharacter_ExpectCodeIsNegativeFour() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/user/login")
                 .param("username","d@dd")
                 .param("password","123456")
@@ -107,7 +107,7 @@ public class LoginTest {
 
     @Test
     @DisplayName("密码为null，期望失败，错误码：-5")
-    public void testLoginWithPasswordIsNullExpectCodeIsNegativeFive() throws Exception {
+    public void test_Login_WithPasswordIsNull_ExpectCodeIsNegativeFive() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/user/login")
                 .param("username","ddd")
                 .contentType("application/json;charset=UTF-8") //数据的格式
@@ -120,7 +120,7 @@ public class LoginTest {
 
     @Test
     @DisplayName("密码长度不等于6，期望失败，错误码：-6")
-    public void testLoginWithPasswordLenghtIsNotSixExpectCodeIsNegativeSix() throws Exception {
+    public void test_Login_WithPasswordLenghtIsNotSix_ExpectCodeIsNegativeSix() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/user/login")
                 .param("username","zcf")
                 .param("password","1234567")
@@ -134,7 +134,7 @@ public class LoginTest {
 
     @Test
     @DisplayName("密码包含非法字符（非英文、数字组合），期望失败，错误码：-7")
-    public void testLoginWithPasswordHaveIllegalCharacterExpectCodeIsNegativeSeven() throws Exception {
+    public void test_Login_WithPasswordHaveIllegalCharacter_ExpectCodeIsNegativeSeven() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/user/login")
                 .param("username","zcf")
                 .param("password","12345@")
@@ -151,7 +151,7 @@ public class LoginTest {
      * */
     @Test
     @DisplayName("用户名不存在，期望失败，错误码：-8")
-    public void testLoginWithUsernameNotHaveExpectFail() throws Exception {
+    public void test_Login_WithUsernameNotHave_ExpectFail() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/user/login")
                 .param("username","zcf999")
                 .param("password","123456")
@@ -165,7 +165,7 @@ public class LoginTest {
 
     @Test
     @DisplayName("密码错误，期望失败，错误码：-9")
-    public void testLoginWithPasswordErrorExpectFail() throws Exception {
+    public void test_Login_WithPasswordError_ExpectFail() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/user/login")
                 .param("username","zcf")
                 .param("password","12345d")

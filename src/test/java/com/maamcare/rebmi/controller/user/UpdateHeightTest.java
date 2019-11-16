@@ -37,7 +37,7 @@ public class UpdateHeightTest {
      * */
     @Test
     @DisplayName("参数正确，期望成功")
-    public void testupdateHeightWithNormalExpectSuccess()throws Exception{
+    public void test_updateHeight_WithNormal_ExpectSuccess()throws Exception{
         mockMvc.perform(MockMvcRequestBuilders.get("/user/updateHeight")
                 .param("userId","1")
                 .param("height","190")
@@ -50,7 +50,7 @@ public class UpdateHeightTest {
 
     @Test
     @DisplayName("用户ID为null，期望失败，错误码：-1")
-    public void testupdateHeightWitUserIdIsNullExpectCodeIsNegativeOne()throws Exception{
+    public void test_updateHeight_WitUserIdIsNull_ExpectCodeIsNegativeOne()throws Exception{
         mockMvc.perform(MockMvcRequestBuilders.get("/user/updateHeight")
                 .param("height","190")
                 .contentType("application/json;charset=UTF-8") //数据的格式
@@ -63,7 +63,7 @@ public class UpdateHeightTest {
 
     @Test
     @DisplayName("用户ID为负，期望失败，错误码：-2")
-    public void testupdateHeightWithUserIdIsNegtiveExpectCodeIsNegativeTwo()throws Exception{
+    public void test_updateHeight_WithUserIdIsNegtive_ExpectCodeIsNegativeTwo()throws Exception{
         mockMvc.perform(MockMvcRequestBuilders.get("/user/updateHeight")
                 .param("userId","-1")
                 .param("height","190")
@@ -77,7 +77,7 @@ public class UpdateHeightTest {
 
     @Test
     @DisplayName("身高为null，期望失败，错误码：-3")
-    public void testupdateHeightWithHeightIsNullExpectCodeIsNegativeThree()throws Exception{
+    public void test_updateHeight_WithHeightIsNull_ExpectCodeIsNegativeThree()throws Exception{
         mockMvc.perform(MockMvcRequestBuilders.get("/user/updateHeight")
                 .param("userId","1")
                 .param("height","")
@@ -91,7 +91,7 @@ public class UpdateHeightTest {
 
     @Test
     @DisplayName("身高为负，期望失败，错误码：-4")
-    public void testupdateHeightWithHeightIsNegtiveExpectCodeIsNegativeFour()throws Exception{
+    public void test_updateHeight_WithHeightIsNegtive_ExpectCodeIsNegativeFour()throws Exception{
         mockMvc.perform(MockMvcRequestBuilders.get("/user/updateHeight")
                 .param("userId","1")
                 .param("height","-3")
@@ -105,7 +105,7 @@ public class UpdateHeightTest {
 
     @Test
     @DisplayName("用户ID不存在，期望失败，错误码：-5")
-    public void testupdateHeightWithDataBaseHaveNotUserIdExpectCodeIsNegativeFive()throws Exception{
+    public void test_updateHeight_WithDataBaseHaveNotUserId_ExpectCodeIsNegativeFive()throws Exception{
         mockMvc.perform(MockMvcRequestBuilders.get("/user/updateHeight")
                 .param("userId","99999")
                 .param("height","160")

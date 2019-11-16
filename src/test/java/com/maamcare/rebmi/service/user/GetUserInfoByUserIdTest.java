@@ -22,7 +22,7 @@ public class GetUserInfoByUserIdTest {
      * */
     @Test
     @DisplayName("参数正确，期望成功")
-    public void testGetUserInfoByUserIdWithUserIdNormalExpectSuccess(){
+    public void test_GetUserInfoByUserId_WithUserIdNormal_ExpectSuccess(){
         Integer userId = 1;
         MyException e=new MyException();
         User user = new User();
@@ -36,7 +36,7 @@ public class GetUserInfoByUserIdTest {
 
     @Test
     @DisplayName("用户不存在，期望失败，错误码：-3")
-    public void testGetUserInfoByUserIdWithUserIdIsNonExistentdExpectCodeIsNegativeThree(){
+    public void test_GetUserInfoByUserId_WithUserIdIsNonExistentd_ExpectCodeIsNegativeThree(){
         Integer userId = 999;
         MyException e=new MyException();
         User user = new User();

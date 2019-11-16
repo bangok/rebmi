@@ -23,7 +23,7 @@ public class UpdateHeightTest {
      * */
     @Test
     @DisplayName("参数正确，期望成功")
-    public void testUpdateHeightWithNormalExpectSuccess(){
+    public void test_UpdateHeight_WithNormal_ExpectSuccess(){
         Integer userId = 1;
         Integer height = 176;
         Assertions.assertThat(userService.updateHeight(userId,height)).isEqualTo(true);
@@ -31,7 +31,7 @@ public class UpdateHeightTest {
 
     @Test
     @DisplayName("用户不存在，期望失败，错误码：-5")
-    public void testUpdateHeightWithUserIdIsNonExistentdExpectCodeIsNegativeFve(){
+    public void test_UpdateHeight_WithUserIdIsNonExistentd_ExpectCodeIsNegativeFve(){
         Integer userId = 999;
         Integer height = 176;
         MyException e=new MyException();

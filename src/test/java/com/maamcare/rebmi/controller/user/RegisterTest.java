@@ -41,7 +41,7 @@ public class RegisterTest {
 
     @Test
     @DisplayName("参数正确，期望成功")
-    public void testRegisterWithNormalExpectSuccess() throws Exception {
+    public void test_Registe_rWithNormal_ExpectSuccess() throws Exception {
         Random rm = new Random();
         int radomInt = rm.nextInt(1000)+1000;
         String s = String.valueOf(radomInt);
@@ -59,7 +59,7 @@ public class RegisterTest {
 
     @Test
     @DisplayName("用户名为null，期望失败，错误码：-1")
-    public void testRegisterWithUsernameIsNullExpectCodeIsNegativeOne() throws Exception {
+    public void test_Register_WithUsernameIsNull_ExpectCodeIsNegativeOne() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/user/register")
                 .param("password","123456")
                 .param("height","185")
@@ -73,7 +73,7 @@ public class RegisterTest {
 
     @Test
     @DisplayName("用户名长度大于8，期望失败，错误码：-2")
-    public void testRegisterWithUsernameLenghtThanEightExpectCodeIsNegativeTwo() throws Exception {
+    public void test_Register_WithUsernameLenghtThanEight_ExpectCodeIsNegativeTwo() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/user/register")
                 .param("username","asdfghjkl")
                 .param("password","123456")
@@ -88,7 +88,7 @@ public class RegisterTest {
 
     @Test
     @DisplayName("用户名长度小于3，期望失败，错误码：-3")
-    public void testRegisterWithUsernameLenghtLessThanThreeExpectCodeIsNegativeThree() throws Exception {
+    public void test_Register_WithUsernameLenghtLessThanThree_ExpectCodeIsNegativeThree() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/user/register")
                 .param("username","a")
                 .param("password","123456")
@@ -103,7 +103,7 @@ public class RegisterTest {
 
     @Test
     @DisplayName("用户名包含非法字符（非英文、数字组合），期望失败，错误码：-4")
-    public void testRegisterWithUsernameIsHaveIllegalCharacterExpectCodeIsNegativeFour() throws Exception {
+    public void test_Register_WithUsernameIsHaveIllegalCharacter_ExpectCodeIsNegativeFour() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/user/register")
                 .param("username","a@163d")
                 .param("password","123456")
@@ -118,7 +118,7 @@ public class RegisterTest {
 
     @Test
     @DisplayName("密码为null，期望失败，错误码：-5")
-    public void testRegisterWithPasswordIsNullExpectCodeIsNegativeFive() throws Exception {
+    public void test_Register_WithPasswordIsNull_ExpectCodeIsNegativeFive() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/user/register")
                 .param("username","zcf")
                 .param("height","185")
@@ -132,7 +132,7 @@ public class RegisterTest {
 
     @Test
     @DisplayName("密码长度不等于6，期望失败，错误码：-6")
-    public void testRegisterWithPasswordLenghtIsNotSixExpectCodeIsNegativeSix() throws Exception {
+    public void test_Register_WithPasswordLenghtIsNotSix_ExpectCodeIsNegativeSix() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/user/register")
                 .param("username","zcf")
                 .param("password","dddddd3")
@@ -147,7 +147,7 @@ public class RegisterTest {
 
     @Test
     @DisplayName("密码包含非法字符（非英文、数字组合），期望失败，错误码：-7")
-    public void testRegisterWithPasswordHaveIllegalCharacterExpectCodeIsNegativeSeven() throws Exception {
+    public void test_Registe_rWithPasswordHaveIllegalCharacter_ExpectCodeIsNegativeSeven() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/user/register")
                 .param("username","zcf")
                 .param("password","ddddd@")
@@ -162,7 +162,7 @@ public class RegisterTest {
 
     @Test
     @DisplayName("身高为null，期望失败，错误码：-8")
-    public void testRegisterWithHeightIsNullExpectCodeIsNegativeEight() throws Exception {
+    public void test_Register_WithHeightIsNull_ExpectCodeIsNegativeEight() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/user/register")
                 .param("username","zcf")
                 .param("password","dddddd")
@@ -176,7 +176,7 @@ public class RegisterTest {
 
     @Test
     @DisplayName("身高为负，期望失败，错误码：-9")
-    public void testRegisterWithHeightIsNegativeExpectCodeIsNegativeNine() throws Exception {
+    public void test_Register_WithHeightIsNegative_ExpectCodeIsNegativeNine() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/user/register")
                 .param("username","zcf")
                 .param("password","dddddd")
@@ -195,7 +195,7 @@ public class RegisterTest {
 
     @Test
     @DisplayName("用户名已存在，期望失败，错误码：-10")
-    public void testRegisterWithUsernameHaveExistExpectError() throws Exception {
+    public void test_Register_WithUsernameHaveExist_ExpectError() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/user/register")
                 .param("username","zcf")
                 .param("password","123456")

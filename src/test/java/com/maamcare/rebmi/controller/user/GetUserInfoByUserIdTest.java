@@ -39,7 +39,7 @@ public class GetUserInfoByUserIdTest {
 
     @Test
     @DisplayName("参数正确，期望成功")
-    public void testGetUserInfoByUserIdWithNormalExpectSuccess()throws Exception{
+    public void test_GetUserInfoByUserId_WithNormalE_xpectSuccess()throws Exception{
         mockMvc.perform(MockMvcRequestBuilders.get("/user/getUserInfoByUserId")
                 .param("userId","1")
                 .contentType("application/json;charset=UTF-8") //数据的格式
@@ -51,7 +51,7 @@ public class GetUserInfoByUserIdTest {
 
     @Test
     @DisplayName("用户ID为null，期望失败，错误码：-1")
-    public void testGetUserInfoByUserIdWithUserIdIsNullExpectCodeIsNegativeOne()throws Exception{
+    public void test_GetUserInfoByUserId_WithUserIdIsNull_ExpectCodeIsNegativeOne()throws Exception{
         mockMvc.perform(MockMvcRequestBuilders.get("/user/getUserInfoByUserId")
                 .contentType("application/json;charset=UTF-8") //数据的格式
                 .accept("application/json;charset=UTF-8")
@@ -63,7 +63,7 @@ public class GetUserInfoByUserIdTest {
 
     @Test
     @DisplayName("用户ID为负，期望失败，错误码：-2")
-    public void testGetUserInfoByUserIdWithUserIdIsNegativeExpectCodeIsNegativeTwo()throws Exception{
+    public void test_GetUserInfoByUserId_WithUserIdIsNegative_ExpectCodeIsNegativeTwo()throws Exception{
         mockMvc.perform(MockMvcRequestBuilders.get("/user/getUserInfoByUserId")
                 .param("userId","-3")
                 .contentType("application/json;charset=UTF-8") //数据的格式
@@ -76,7 +76,7 @@ public class GetUserInfoByUserIdTest {
 
     @Test
     @DisplayName("用户ID不存在，期望失败，错误码：-3")
-    public void testGetUserInfoByUserIdWithDataBaseHaveNotUserIdExceptCodeIsNegativeThree()throws Exception{
+    public void test_GetUserInfoByUserId_WithDataBaseHaveNotUserId_ExceptCodeIsNegativeThree()throws Exception{
         mockMvc.perform(MockMvcRequestBuilders.get("/user/getUserInfoByUserId")
                 .param("userId","99999")
                 .contentType("application/json;charset=UTF-8") //数据的格式

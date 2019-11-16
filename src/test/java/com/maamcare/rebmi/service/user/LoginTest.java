@@ -22,7 +22,7 @@ public class LoginTest {
      * */
     @Test
     @DisplayName("参数正确，期望成功")
-    public void testLoginWithUsernameAndPasswordNormalExpectSuccess(){
+    public void test_Login_WithUsernameAndPasswordNormal_ExpectSuccess(){
         String username = "zcf";
         String password = "123456";
         MyException e=new MyException();
@@ -37,7 +37,7 @@ public class LoginTest {
 
     @Test
     @DisplayName("用户不存在，期望失败，错误码：-8")
-    public void testLoginWithUsernameIsNotHaveAndPasswordNormalExpectCodeIsNegativeEight(){
+    public void test_Login_WithUsernameIsNotHaveAndPasswordNormal_ExpectCodeIsNegativeEight(){
         String username = "zcf999";
         String password = "123457";
         MyException e=new MyException();
@@ -52,7 +52,7 @@ public class LoginTest {
 
     @Test
     @DisplayName("密码错误，期望失败，错误码：-9")
-    public void testLoginWithUsernameNormalAndPasswordErrorExpectCodeIsNegativeNine(){
+    public void test_Login_WithUsernameNormalAndPasswordError_ExpectCodeIsNegativeNine(){
         String username = "zcf";
         String password = "123457";
         MyException e=new MyException();
