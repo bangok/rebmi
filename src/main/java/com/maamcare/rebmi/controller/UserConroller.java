@@ -25,6 +25,7 @@ public class UserConroller {
     UserService userService;
 
 
+
     @GetMapping("/test")
     @Access(authorities = {"LOGIN"})
     public Result test(HttpSession session,Integer id,User user,String name){
@@ -33,7 +34,7 @@ public class UserConroller {
 
 
     @PostMapping("/register")
-    public Result register(@Validated UserRegisterInfoVo userRegisterInfoVo,
+    public Result register(@Validated @RequestBody UserRegisterInfoVo userRegisterInfoVo,
                            HttpSession session){
         User user = new User();
         user.setUsername(userRegisterInfoVo.getUsername());
@@ -47,7 +48,7 @@ public class UserConroller {
     }
 
     @PostMapping("/login")
-    public Result login(@Validated UserLoginInfoVo userLoginInfoVo,
+    public Result login(@Validated @RequestBody UserLoginInfoVo userLoginInfoVo,
                         HttpSession session
                            ){//HttpSession session
 

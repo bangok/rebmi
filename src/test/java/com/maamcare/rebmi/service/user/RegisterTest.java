@@ -24,7 +24,7 @@ public class RegisterTest {
      * 用户注册
      * */
     @Test
-    @DisplayName("参数正确，期望成功")
+    @DisplayName("参数正确，期望返回用户ID")
     public void test_Register_WithNomal_ExpectSuccess(){
         //组装入参数据
         Random rm = new Random();

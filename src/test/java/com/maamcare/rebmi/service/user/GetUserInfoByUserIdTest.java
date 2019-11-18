@@ -21,7 +21,7 @@ public class GetUserInfoByUserIdTest {
      * 获取用户信息
      * */
     @Test
-    @DisplayName("参数正确，期望成功")
+    @DisplayName("参数正确，期望返回用户信息非空")
     public void test_GetUserInfoByUserId_WithUserIdNormal_ExpectSuccess(){
         Integer userId = 1;
         MyException e=new MyException();

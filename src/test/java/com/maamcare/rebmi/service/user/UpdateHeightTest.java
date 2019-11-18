@@ -22,7 +22,7 @@ public class UpdateHeightTest {
      * 用户更新身高
      * */
     @Test
-    @DisplayName("参数正确，期望成功")
+    @DisplayName("参数正确，期望返回True")
     public void test_UpdateHeight_WithNormal_ExpectSuccess(){
         Integer userId = 1;
         Integer height = 176;

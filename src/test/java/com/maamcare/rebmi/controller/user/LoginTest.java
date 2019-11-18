@@ -38,7 +38,7 @@ public class LoginTest {
      * */
 
     @Test
-    @DisplayName("参数合法(username:zcf,password:123456)，期望成功")
+    @DisplayName("参数合法(username:zcf,password:123456)，期望状态码为1")
     public void test_Login_WithNormal_ExpectSuccess() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/user/login")
                 .param("username","zcf")

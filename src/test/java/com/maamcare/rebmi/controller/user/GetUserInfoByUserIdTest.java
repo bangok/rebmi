@@ -38,7 +38,7 @@ public class GetUserInfoByUserIdTest {
      * */
 
     @Test
-    @DisplayName("参数正确，期望成功")
+    @DisplayName("参数正确，期望状态码为1")
     public void test_GetUserInfoByUserId_WithNormalE_xpectSuccess()throws Exception{
         mockMvc.perform(MockMvcRequestBuilders.get("/user/getUserInfoByUserId")
                 .param("userId","1")

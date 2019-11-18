@@ -36,7 +36,7 @@ public class UpdateHeightTest {
      * 用户修改身高
      * */
     @Test
-    @DisplayName("参数正确，期望成功")
+    @DisplayName("参数正确，期望状态码为1")
     public void test_updateHeight_WithNormal_ExpectSuccess()throws Exception{
         mockMvc.perform(MockMvcRequestBuilders.get("/user/updateHeight")
                 .param("userId","1")

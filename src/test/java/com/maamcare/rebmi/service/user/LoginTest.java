@@ -21,7 +21,7 @@ public class LoginTest {
      * 用户登录
      * */
     @Test
-    @DisplayName("参数正确，期望成功")
+    @DisplayName("参数正确，期望返回用户ID")
     public void test_Login_WithUsernameAndPasswordNormal_ExpectSuccess(){
         String username = "zcf";
         String password = "123456";
