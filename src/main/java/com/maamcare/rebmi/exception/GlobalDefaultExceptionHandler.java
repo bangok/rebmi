@@ -3,6 +3,7 @@ import com.maamcare.rebmi.vo.common.ErrMap;
 import com.maamcare.rebmi.vo.common.Result;
 import org.springframework.validation.BindException;
 import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -16,6 +17,20 @@ import java.util.List;
  * */
 @ControllerAdvice
 public class GlobalDefaultExceptionHandler {
+
+    @ExceptionHandler(value = MethodArgumentNotValidException.class)
+    @ResponseBody
+    public Result methodArgumentNotValidExceptionHandler(MethodArgumentNotValidException e){
+        ErrMap errMap = new ErrMap();
+        String message = null;
+        Integer code = null;
+        List<ObjectError> elist =e.getBindingResult().getAllErrors();
+        String str = elist.get(0).getDefaultMessage();
+        String[] arr = str.split(",");
+        errMap.setCode(Integer.valueOf(arr[0]));
+        errMap.setMsg(arr[1]);
+        return Result.fail(errMap);
+    }
 
     @ExceptionHandler(value = BindException.class)
     @ResponseBody
