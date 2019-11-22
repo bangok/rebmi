@@ -37,6 +37,8 @@ public class GetUserInfoByUserIdTest {
      * 获取用户信息
      * */
 
+
+
     @Test
     @DisplayName("参数正确，期望状态码为1")
     public void test_GetUserInfoByUserId_WithNormalE_xpectSuccess()throws Exception{
@@ -47,6 +49,19 @@ public class GetUserInfoByUserIdTest {
         ).andExpect(status().isOk())  //返回的状态是200
                 .andDo(print()) //打印出请求和相应的内容
                 .andExpect(jsonPath("$.status").value(1));
+    }
+
+    @Test
+    @DisplayName("请求方法为post，期望失败，错误码：-200")
+    public void test_GetUserInfoByUserId_WithMewhodError_ExpectError()throws Exception{
+        mockMvc.perform(MockMvcRequestBuilders.post("/user/getUserInfoByUserId")
+                .param("userId","1")
+                .contentType("application/json;charset=UTF-8") //数据的格式
+                .accept("application/json;charset=UTF-8")
+        ).andExpect(status().isOk())  //返回的状态是200
+                .andDo(print()) //打印出请求和相应的内容
+                .andExpect(jsonPath("$.status").value(0))
+                .andExpect(jsonPath("$.err.code").value(-200));
     }
 
     @Test

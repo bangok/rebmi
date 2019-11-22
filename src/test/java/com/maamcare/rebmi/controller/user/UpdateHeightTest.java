@@ -49,6 +49,20 @@ public class UpdateHeightTest {
     }
 
     @Test
+    @DisplayName("请求方式为post，期望错误，错误码：-200")
+    public void test_updateHeight_WithMethodError_ExpectError()throws Exception{
+        mockMvc.perform(MockMvcRequestBuilders.post("/user/updateHeight")
+                .param("userId","1")
+                .param("height","190")
+                .contentType("application/json;charset=UTF-8") //数据的格式
+                .accept("application/json;charset=UTF-8")
+        ).andExpect(status().isOk())  //返回的状态是200
+                .andDo(print()) //打印出请求和相应的内容
+                .andExpect(jsonPath("$.status").value(0))
+                .andExpect(jsonPath("$.err.code").value(-200));
+    }
+
+    @Test
     @DisplayName("用户ID为null，期望失败，错误码：-1")
     public void test_updateHeight_WitUserIdIsNull_ExpectCodeIsNegativeOne()throws Exception{
         mockMvc.perform(MockMvcRequestBuilders.get("/user/updateHeight")

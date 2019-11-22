@@ -64,6 +64,29 @@ public class RegisterTest {
     }
 
     @Test
+    @DisplayName("请求方式为get，期望错误，错误码：-200")
+    public void test_Register__WithMethodError_ExpectError() throws Exception {
+        Random rm = new Random();
+        int radomInt = rm.nextInt(1000)+1000;
+        String s = String.valueOf(radomInt);
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        map.put("username","test"+s);
+        map.put("password","123456");
+        map.put("height","185");
+        JSONObject jsonObj = new JSONObject(map);
+        String param = jsonObj.toJSONString();
+        mockMvc.perform(MockMvcRequestBuilders.get("/user/register")
+                .content(param)
+                .contentType("application/json;charset=UTF-8") //数据的格式
+                .accept("application/json;charset=UTF-8")
+        ).andExpect(status().isOk())  //返回的状态是200
+                .andDo(print()) //打印出请求和相应的内容
+                .andExpect(jsonPath("$.status").value(0))
+                .andExpect(jsonPath("$.err.code").value(-200));
+
+    }
+
+    @Test
     @DisplayName("用户名为null，期望失败，错误码：-1")
     public void test_Register_WithUsernameIsNull_ExpectCodeIsNegativeOne() throws Exception {
         HashMap<String, Object> map = new HashMap<String, Object>();
