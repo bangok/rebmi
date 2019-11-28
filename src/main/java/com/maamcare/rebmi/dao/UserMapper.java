@@ -10,9 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 @Transactional
 public interface UserMapper {
-    public User getUserByUserId(Integer userid);
-    public boolean addUser(User user);
-    public User getUserByUsername(String username);
-    @Update("update user SET height=#{height} where id=#{userId}")
-    public Integer upDateHeight(@Param(value = "userId") Integer userId,@Param(value = "height")Integer height);
+    User getUserByUserId(Integer userid);
+    boolean addUser(User user);
+    User getUserByUsername(String username);
+    @Update("UPDATE user SET height=#{height} WHERE id=#{userId}")
+    Integer upDateHeight(@Param(value = "userId") Integer userId,@Param(value = "height")Integer height);
 }

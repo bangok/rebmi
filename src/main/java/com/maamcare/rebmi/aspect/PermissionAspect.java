@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 @Aspect
 public class PermissionAspect {
 
-    private final String POINT_CUT = "execution(public * com.maamcare.rebmi.controller.*.*(..))";
+    private static final String POINT_CUT = "execution(public * com.maamcare.rebmi.controller.*.*(..))";
 
     @Pointcut(POINT_CUT)
     public void pointCut(){}

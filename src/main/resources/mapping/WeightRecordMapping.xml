@@ -10,19 +10,23 @@
     </resultMap>
 
     <select id="GetWeightListByTimeSoltAndUserId" resultMap="BaseResultMap">
-        select * from record where record_date  &gt;= #{startDate}and record_date &lt;= #{endDate}
+        select * from record where record_date  &gt;= #{startDate} and record_date &lt;= #{endDate}
         and userid = #{userId}
     </select>
+
    <select id="getWeightByUserIdAndDate" resultMap="BaseResultMap">
        select * from record where userid = #{userId} and record_date = #{anyDate}
    </select>
+
     <insert id="addWeightRecord">
           insert into record (userid,record_date,weight) values(#{userId},#{addDate},#{weight})
     </insert>
+
     <update id="updateWeightRecordByRecordId"  parameterType="Integer">
          update record SET weight=#{weight}
          where id=#{recordId}
     </update>
+
     <select id="GetWeightRecordByRecordId" resultMap="BaseResultMap">
         select * from record where id = #{recordId};
     </select>

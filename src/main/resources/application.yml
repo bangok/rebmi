@@ -7,8 +7,8 @@ spring:
     #    数据库用户名密码
     username: root
     password: 123456
-    #    数据库链接地址、数据库名字
-    url: jdbc:mysql://localhost:3306/bmi?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
+    #    数据库链接地址、数据库名字，注意设置时区为东8区
+    url: jdbc:mysql://localhost:3306/bmi?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=GMT%2B8
     driver-class-name: com.mysql.cj.jdbc.Driver
   activemq:
     broker-url:

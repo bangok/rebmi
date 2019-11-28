@@ -4,8 +4,8 @@ package com.maamcare.rebmi.service;
 import com.maamcare.rebmi.po.User;
 
 public interface UserService {
-    public Integer register(User user);
-    public Integer login(String username,String password);
-    public User getUserInfoByUserId(Integer userId);
-    public boolean updateHeight(Integer userId,Integer height);
+    Integer register(User user);
+    Integer login(String username,String password);
+    User getUserInfoByUserId(Integer userId);
+    boolean updateHeight(Integer userId,Integer height);
 }

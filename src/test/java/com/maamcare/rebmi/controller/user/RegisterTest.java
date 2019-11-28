@@ -45,8 +45,8 @@ public class RegisterTest {
     @DisplayName("参数正确，期望状态码为1")
     public void test_Registe_rWithNormal_ExpectSuccess() throws Exception {
         Random rm = new Random();
-        int radomInt = rm.nextInt(1000)+1000;
-        String s = String.valueOf(radomInt);
+        int randomInt = rm.nextInt(1000)+1000;
+        String s = String.valueOf(randomInt);
         HashMap<String, Object> map = new HashMap<String, Object>();
         map.put("username","test"+s);
         map.put("password","123456");
