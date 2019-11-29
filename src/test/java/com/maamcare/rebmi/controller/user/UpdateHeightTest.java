@@ -131,5 +131,19 @@ public class UpdateHeightTest {
                 .andExpect(jsonPath("$.err.code").value(-5));
     }
 
+    @Test
+    @DisplayName("身高超过999，期望失败，错误码：-6")
+    public void test_updateHeight_WithHeightIsBig_ExpectError()throws Exception{
+        mockMvc.perform(MockMvcRequestBuilders.get("/user/updateHeight")
+                .param("userId","1")
+                .param("height","99999")
+                .contentType("application/json;charset=UTF-8") //数据的格式
+                .accept("application/json;charset=UTF-8")
+        ).andExpect(status().isOk())  //返回的状态是200
+                .andDo(print()) //打印出请求和相应的内容
+                .andExpect(jsonPath("$.status").value(0))
+                .andExpect(jsonPath("$.err.code").value(-6));
+    }
+
 
 }

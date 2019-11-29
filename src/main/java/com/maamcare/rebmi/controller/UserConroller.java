@@ -41,7 +41,7 @@ public class UserConroller {
         user.setPassword(userRegisterInfoVo.getPassword());
         user.setHeight(userRegisterInfoVo.getHeight());
         Integer userId =userService.register(user);
-        session.setAttribute("loginUser",user);
+        session.setAttribute("loginUser",user.getUsername());
         Map resData = new HashMap();
         resData.put("userId",userId);
         return Result.success(resData);
@@ -105,6 +105,11 @@ public class UserConroller {
         if(height<0){
             err.setCode(-4);
             err.setMsg("用户身高为负");
+            return Result.fail(err);
+        }
+        if(height>999){
+            err.setCode(-6);
+            err.setMsg("用户身高只能小于10米");
             return Result.fail(err);
         }
         userService.updateHeight(userId,height);

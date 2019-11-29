@@ -62,7 +62,7 @@ public class GlobalDefaultExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     @ResponseBody
-    public Result ExceptionHandler(HttpServletRequest request, HttpServletResponse response, Exception e) throws IOException {
+    public Result exceptionHandler(HttpServletRequest request, HttpServletResponse response, Exception e) throws IOException {
         ErrMap errMap = new ErrMap();
         String message = null;
         Integer code = null;
@@ -73,7 +73,6 @@ public class GlobalDefaultExceptionHandler {
         return Result.fail(errMap);
 
     }
-
 
 }
 

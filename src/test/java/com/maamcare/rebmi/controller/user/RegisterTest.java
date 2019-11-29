@@ -23,7 +23,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @WebAppConfiguration
-@DisplayName("register(String username,String password,Integer height) 用户登录(用户名，用户密码，身高) controller")
+@DisplayName("register(String username,String password,Integer height) 用户注册(用户名，用户密码，身高) controller")
 public class RegisterTest {
     @Autowired
     private WebApplicationContext webApplicationContext;
@@ -278,6 +278,25 @@ public class RegisterTest {
                 .andDo(print()) //打印出请求和相应的内容
                 .andExpect(jsonPath("$.status").value(0))
                 .andExpect(jsonPath("$.err.code").value(-10));
+    }
+
+    @Test
+    @DisplayName("身高超过上限，期望失败，错误码：-11")
+    public void test_Register_WithHeightIsBig_ExpectError() throws Exception {
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        map.put("username","zcf");
+        map.put("password","123456");
+        map.put("height","9999");
+        JSONObject jsonObj = new JSONObject(map);
+        String param = jsonObj.toJSONString();
+        mockMvc.perform(MockMvcRequestBuilders.post("/user/register")
+                .content(param)
+                .contentType("application/json;charset=UTF-8") //数据的格式
+                .accept("application/json;charset=UTF-8")
+        ).andExpect(status().isOk())  //返回的状态是200
+                .andDo(print()) //打印出请求和相应的内容
+                .andExpect(jsonPath("$.status").value(0))
+                .andExpect(jsonPath("$.err.code").value(-11));
     }
 
 

@@ -14,7 +14,7 @@ import java.util.Random;
 
 
 @SpringBootTest
-@DisplayName("register(User user) 用户注册(用户对象) service")
+@DisplayName("register(User（用户名、密码、身高）user) 用户注册(用户对象，包含用户名、密码、身高) service")
 public class RegisterTest {
 
     @Autowired

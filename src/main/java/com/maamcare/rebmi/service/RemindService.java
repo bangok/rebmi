@@ -5,5 +5,5 @@ import com.maamcare.rebmi.po.WeightRecord;
 
 
 public interface RemindService {
-    public WeightRecord getWeightByUserIdAndDate(Integer userId, String anyDate) ;
+    WeightRecord getWeightByUserIdAndDate(Integer userId, String anyDate) ;
 }

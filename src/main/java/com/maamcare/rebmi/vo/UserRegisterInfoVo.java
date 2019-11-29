@@ -25,5 +25,6 @@ public class UserRegisterInfoVo {
 
     @NotNull(message = "-8,身高为空")
     @Min(value = 1,message = "-9,身高为不能小于等于0")
+    @Max(value = 999,message = "-11,身高只能小于10米")
     public Integer height;
 }
